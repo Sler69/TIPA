@@ -20,11 +20,9 @@ fun main(args: Array<String>) {
         //Intializing the path
         Spark.get("/", { _, _ ->
             val model = HashMap<String, Any>()
-            model.put("message", "Hello Freemarker!")
+            model.put("message", "Hello Devs")
             ModelAndView(model, "hello.ftl") // located in src/test/resources/spark/template/freemarker
         }, FreeMarkerEngine())
-
-
 
     }
 }
