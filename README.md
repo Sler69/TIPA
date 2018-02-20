@@ -10,4 +10,10 @@ Entrar al siguiente link :https://www.jetbrains.com/shop/eform/students
 
 Esperar el mail de JetBrains! 
 
-Seguir las instrucciones del siguiente link:
+Instalar ToolBox: https://www.jetbrains.com/toolbox/app/?fromMenu
+
+Ingresar con la cuenta de JetBrains Utilizando el mail del tec.
+
+Instalar IntelliJ Ultimate.
+
+Enjoy!
