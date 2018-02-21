@@ -1,13 +1,11 @@
 import Controller.ExampleFTL
 import Controller.ExampleJSON
-
 import Util.LocalDateSerializer
 import Util.LocalDateTimeSerializer
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import org.apache.log4j.BasicConfigurator
 import spark.Service
-import spark.Spark
 import spark.ModelAndView
 import spark.template.freemarker.FreeMarkerEngine
 import java.time.LocalDate

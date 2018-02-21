@@ -7,7 +7,6 @@ import spark.Request
 import spark.Response
 import spark.Route
 import spark.ModelAndView
-import org.apache.log4j.DefaultThrowableRenderer.render
 import spark.template.freemarker.FreeMarkerEngine
 
 
