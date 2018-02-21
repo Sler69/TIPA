@@ -6,6 +6,10 @@ import mu.KLogging
 import spark.Request
 import spark.Response
 import spark.Route
+import spark.ModelAndView
+import org.apache.log4j.DefaultThrowableRenderer.render
+import spark.template.freemarker.FreeMarkerEngine
+
 
 /**
  * This allows us to create Route objects that have their own logger
@@ -48,4 +52,12 @@ fun Response.prepare(statusCode: Int, content: Any): String {
     type("application/json")
     body(gson.toJson(content))
     return body()
+}
+
+/**
+ * This function is so we can render our views with model map.
+ */
+
+fun Response.render(model: Map<String, Any>, templatePath: String): String {
+    return FreeMarkerEngine().render(ModelAndView(model, templatePath))
 }

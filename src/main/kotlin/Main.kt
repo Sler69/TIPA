@@ -1,4 +1,6 @@
-import Controller.PostTest1
+import Controller.ExampleFTL
+import Controller.ExampleJSON
+
 import Util.LocalDateSerializer
 import Util.LocalDateTimeSerializer
 import com.google.gson.Gson
@@ -21,11 +23,11 @@ fun main(args: Array<String>) {
     BasicConfigurator.configure()
 
     Service.ignite().apply {
-        Spark.port(8050)
-        Spark.staticFileLocation("/public")
+        port(8050)
+        staticFileLocation("/public")
 
         //Intializing the path
-        Spark.get("/", { _, _ ->
+        get("/", { _, _ ->
             val model = HashMap<String, Any>()
             model.put("message", "Hello Devs")
             ModelAndView(model, "hello.ftl") // located in src/test/resources/spark/template/freemarker
@@ -33,7 +35,8 @@ fun main(args: Array<String>) {
 
 
         //Intializing paths
-        Spark.post("/postinfo",PostTest1)
+        post("postinfo", ExampleJSON)
+        post("post1", ExampleFTL)
 
     }
 }

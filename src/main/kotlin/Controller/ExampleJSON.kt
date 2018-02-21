@@ -1,14 +1,15 @@
 package Controller
 
 import Util.LoggableRoute
-import Util.bodyAs
 import Util.prepare
 import spark.Request
 import spark.Response
 
+/**
+* Example of how to return a JSON object
+*/
 
-
-object PostTest1 : LoggableRoute()  {
+object ExampleJSON : LoggableRoute()  {
     override fun handle(request: Request, response: Response): Any {
         val post = ResultInfo(
                 name = "Arturo",
