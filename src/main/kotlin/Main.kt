@@ -1,5 +1,7 @@
 import Controller.ExampleFTL
 import Controller.ExampleJSON
+import ControllerJV.ExampleFTLJV
+import ControllerJV.ExampleJSONJV
 import Util.LocalDateSerializer
 import Util.LocalDateTimeSerializer
 import com.google.gson.Gson
@@ -33,8 +35,10 @@ fun main(args: Array<String>) {
 
 
         //Intializing paths
-        post("postinfo", ExampleJSON)
-        post("post1", ExampleFTL)
+        post("jsonEX", ExampleJSON)
+        post("ftlEX", ExampleFTL)
+        get("ftlJVEX",ExampleFTLJV.INSTANCE)
+        post("jsonEXJV",ExampleJSONJV.INSTANCE)
 
     }
 }
