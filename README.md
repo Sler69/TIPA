@@ -17,3 +17,12 @@ Ingresar con la cuenta de JetBrains Utilizando el mail del tec.
 Instalar IntelliJ Ultimate.
 
 Enjoy!
+
+## Correr el proyecto
+
+Esta es la razon por la cual tenemos que instalar IntelliJ para poder correr el proyecto. Existe el documento que describe como se puede correr este proyecto.https://docs.google.com/document/d/1OiYjR4A06n7s5_eKnlJH4fOZ44LEsqwUxRBtDK-datI/edit
+
+Probe estos pasos con Linux y Windows con computadoras diferentes y funciono. Pero si quieren pueden agregar pasos o editar mi descripcion para entender mejor la instalacion pueden cambiarlo. 
+
+## Info
+
