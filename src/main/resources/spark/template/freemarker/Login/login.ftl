@@ -4,14 +4,17 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/bulma/bulma.css">
     <link rel="stylesheet" href="css/icons/icons.css">
+    <link rel="stylesheet" href="css/users/login.css">
     <script src="javascript/angular/angular.min.js"></script>
 
 </head>
     <body>
         <div>
-            <div class="card">
+            <div class="card-login card">
                 <div class="card-image">
-
+                    <figure class="image is-4by3">
+                        <img src="images/logo32.png" alt="Placeholder image">
+                    </figure>
                 </div>
                 <div class="card-content">
                     <div class="field">
