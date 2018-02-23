@@ -33,6 +33,11 @@ fun main(args: Array<String>) {
             ModelAndView(model, "hello.ftl") // located in src/test/resources/spark/template/freemarker
         }, FreeMarkerEngine())
 
+        get("login",{_,_ ->
+            val model = HashMap<String, Any>()
+            model.put("message", "Hello Devs")
+            ModelAndView(model, "Login/login.ftl")
+        }, FreeMarkerEngine());
 
         //Intializing paths
         post("jsonEX", ExampleJSON)
