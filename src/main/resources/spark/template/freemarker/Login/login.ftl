@@ -17,7 +17,7 @@
                     </figure>
                 </div>
                 <div class="card-content">
-                    <h1 class="title is-centered">TIPA</h1>
+                    <h1 class="title is-centered" style="margin-left:40%">TIPA</h1>
                     <div class="field field-login">
                         <p class="control has-icons-left ">
                             <input class="input" type="email" placeholder="Email">
@@ -36,8 +36,8 @@
                             </span>
                         </p>
                     </div>
-                    <a class="button is-info">Create User</a><br>
-                    <a class="button is-dark">Log In</a>
+                    <a class="button is-dark login-button">Login</a><br>
+                    <a class="button is-info login-button">Create User</a>
                 </div>
             </div>
         </div>
