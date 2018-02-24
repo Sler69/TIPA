@@ -9,36 +9,37 @@
 
 </head>
     <body>
-        <div>
-            <div class="card-login card">
-                <div class="card-image">
-                    <figure class="image is-4by3">
-                        <img src="images/logo32.png" alt="Placeholder image">
+    <div class="card-login">
+        <div class="card">
+            <div class="card-image is-1by2">
+                    <figure class="image">
+                        <img src="images/logoCenter.png" alt="Placeholder image" >
                     </figure>
                 </div>
                 <div class="card-content">
-                    <div class="field">
+                    <h1 class="title is-centered">TIPA</h1>
+                    <div class="field field-login">
                         <p class="control has-icons-left ">
                             <input class="input" type="email" placeholder="Email">
                             <span class="icon is-small is-left">
-                                <svg class="icon-avatar" style="height: 1em;width: 1em; max-height: 100%;max-width: 100%;overflow: visible;">
+                                <svg class="icon-avatar field-icon" >
 
                                 </svg>
                             </span>
                         </p>
                     </div>
-                    <div class="field">
+                    <div class="field field-login">
                         <p class="control has-icons-left">
                             <input class="input" type="password" placeholder="Password">
                             <span class="icon is-small is-left">
-                                <i class="icon-cancel"></i>
+                                <i class="icon-cancel field-icon"></i>
                             </span>
                         </p>
                     </div>
-
+                    <a class="button is-info">Create User</a><br>
+                    <a class="button is-dark">Log In</a>
                 </div>
             </div>
-
         </div>
     </body>
 </html>
