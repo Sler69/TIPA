@@ -10,6 +10,10 @@
         
         function getCredentials() {
             console.log(vm.userName + "  " +  vm.password);
+            var data = {
+                "username":vm.userName
+            }
+            $http.post("/lol",data).then();
         }
     }]);
 
