@@ -1,7 +1,6 @@
 package Controller
 
 import Util.LoggableRoute
-import Util.render
 import configuration
 import spark.Request
 import spark.Response
@@ -18,10 +17,11 @@ object ExampleFTL : LoggableRoute()  {
         val model = HashMap<String, Any>()
         model.put("message", "Hello Devs")
          configuration.setClassForTemplateLoading(ExampleFTL::class.java, "/")
-        val formTemplate = configuration.getTemplate("templates/hello.ftl")
+        val formTemplate = configuration.getTemplate("templates/Example/hello.ftl")
         val writer = StringWriter()
 
         formTemplate.process(model, writer);
+
         return writer
     }
 }
