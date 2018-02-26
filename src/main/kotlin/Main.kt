@@ -25,11 +25,11 @@ val gson: Gson = GsonBuilder()
         .registerTypeAdapter(LocalDate::class.java, LocalDateSerializer())
         .registerTypeAdapter(LocalDateTime::class.java, LocalDateTimeSerializer())
         .create()
-
+val configuration = Configuration(Version(2, 3, 0))
 object TipaApp {
     @JvmStatic fun main(args: Array<String>) {
         BasicConfigurator.configure()
-        val configuration = Configuration(Version(2, 3, 0))
+
         configuration.setClassForTemplateLoading(TipaApp::class.java, "/")
         Service.ignite().apply {
             port(8050)
@@ -50,26 +50,45 @@ object TipaApp {
 
             //Intializing paths
             post("jsonEX", ExampleJSON)
-            post("ftlEX", ExampleFTL)
+            get("ftlEX", ExampleFTL)
             get("ftlJVEX", ExampleFTLJV.INSTANCE)
             post("jsonEXJV", ExampleJSONJV.INSTANCE)
 
-            post("lol", { req, resp ->
+            get("duda") { request, response ->
+
                 val writer = StringWriter()
 
                 try {
+                    val formTemplate = configuration.getTemplate("templates/form.ftl")
 
-                    val resultTemplate = configuration.getTemplate("spark/template/freemarker/header.ftl")
-                    val model = HashMap<String, Any>()
-                    model.put("message", "Hello Devs")
-                    resultTemplate.process(model, writer)
+                    formTemplate.process(null, writer)
                 } catch (e: Exception) {
                     Spark.halt(500)
                 }
 
                 writer
+            }
 
-            })
+            post("sait") { request, response ->
+                val writer = StringWriter()
+
+                try {
+                    val name = if (request.queryParams("name") != null) request.queryParams("name") else "anonymous"
+                    val email = if (request.queryParams("email") != null) request.queryParams("email") else "unknown"
+
+                    val resultTemplate = configuration.getTemplate("templates/result.ftl")
+
+                    val map = HashMap<String, Any>()
+                    map["name"] = name
+                    map["email"] = email
+
+                    resultTemplate.process(map, writer)
+                } catch (e: Exception) {
+                    Spark.halt(500)
+                }
+
+                writer
+            }
         }
     }
 }

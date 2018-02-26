@@ -8,7 +8,7 @@
 </head>
 <body>
 <div>
-<#include "*/../../../templates/header.ftl">
+
     <div align="center">
         <h1 style="font-size: 22px">
             ${message}
