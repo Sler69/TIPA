@@ -14,6 +14,7 @@ import java.util.HashMap
 import spark.Spark
 import freemarker.template.Configuration
 import freemarker.template.Version
+import org.slf4j.LoggerFactory
 import java.io.StringWriter
 
 
@@ -23,7 +24,7 @@ val gson: Gson = GsonBuilder()
         .registerTypeAdapter(LocalDateTime::class.java, LocalDateTimeSerializer())
         .create()
 val configuration = Configuration(Version(2, 3, 0))
-
+internal var logger = LoggerFactory.getLogger(TipaApp::class.java)
 object TipaApp {
     @JvmStatic fun main(args: Array<String>) {
         BasicConfigurator.configure()
@@ -33,6 +34,15 @@ object TipaApp {
             port(8050)
             staticFileLocation("/public")
 
+            before("/*/") { req, res ->
+                val session = req.session(true)
+
+                if (false) {
+                    logger.warn("Secured Area! Login is REQUIRED")
+                    res.redirect("/login")
+                    halt(401)
+                }
+            }
             //Intializing without using their own controller
             get("/", { _, _ ->
                 val writer = StringWriter()
@@ -81,23 +91,26 @@ object TipaApp {
 
             post("sait") { request, response ->
                 val writer = StringWriter()
+                if(false) {
+                    try {
+                        val name = if (request.queryParams("name") != null) request.queryParams("name") else "anonymous"
+                        val email = if (request.queryParams("email") != null) request.queryParams("email") else "unknown"
 
-                try {
-                    val name = if (request.queryParams("name") != null) request.queryParams("name") else "anonymous"
-                    val email = if (request.queryParams("email") != null) request.queryParams("email") else "unknown"
+                        val resultTemplate = configuration.getTemplate("templates/Example/result.ftl")
 
-                    val resultTemplate = configuration.getTemplate("templates/Example/result.ftl")
+                        val map = HashMap<String, Any>()
+                        map["name"] = name
+                        map["email"] = email
 
-                    val map = HashMap<String, Any>()
-                    map["name"] = name
-                    map["email"] = email
+                        resultTemplate.process(map, writer)
+                    } catch (e: Exception) {
+                        Spark.halt(500)
+                    }
 
-                    resultTemplate.process(map, writer)
-                } catch (e: Exception) {
-                    Spark.halt(500)
+                    writer
+                }else{
+                    response.redirect("login",404);
                 }
-
-                writer
             }
 
             post("dashboard") { request, response ->
