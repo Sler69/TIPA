@@ -99,6 +99,22 @@ object TipaApp {
 
                 writer
             }
+
+            post("dashboard") { request, response ->
+                val writer = StringWriter()
+
+                try {
+                    val resultTemplate = configuration.getTemplate("templates/Example/hello.ftl")
+
+                    val map = HashMap<String, Any>()
+                    map.put("message","HELOOOOOOOOOOO")
+                    resultTemplate.process(map, writer)
+                } catch (e: Exception) {
+                    Spark.halt(500)
+                }
+
+                writer
+            }
         }
     }
 }

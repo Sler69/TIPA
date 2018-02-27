@@ -13,7 +13,12 @@
             var data = {
                 "username":vm.userName
             }
-            $http.post("/lol",data).then();
+           $http({
+               method: 'POST',
+               url: "/dashboard",
+               data: data,
+               headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+           })
         }
     }]);
 
