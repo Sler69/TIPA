@@ -1,9 +1,11 @@
-import Controller.ExampleFTL
-import Controller.ExampleJSON
+package com.tipa
+
+import com.tipa.Controller.ExampleFTL
+import com.tipa.Controller.ExampleJSON
 import ControllerJV.ExampleFTLJV
 import ControllerJV.ExampleJSONJV
-import Util.LocalDateSerializer
-import Util.LocalDateTimeSerializer
+import com.tipa.Util.LocalDateSerializer
+import com.tipa.Util.LocalDateTimeSerializer
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import org.apache.log4j.BasicConfigurator

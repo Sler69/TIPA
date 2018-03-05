@@ -1,9 +1,9 @@
 package ControllerJV;
 
-import Controller.ExampleFTL;
-import Util.LoggableRoute;
+import com.tipa.Controller.ExampleFTL;
+import com.tipa.Util.LoggableRoute;
 
-import Util.SparkUtilKt;
+import com.tipa.Util.SparkUtilKt;
 import spark.Request;
 import spark.Response;
 

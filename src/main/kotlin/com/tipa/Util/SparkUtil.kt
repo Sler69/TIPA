@@ -1,6 +1,7 @@
-package Util
+package com.tipa.Util
 
-import gson
+import com.tipa.gson
+
 import mu.KLoggable
 import mu.KLogging
 import spark.Request
@@ -11,7 +12,7 @@ import spark.template.freemarker.FreeMarkerEngine
 
 
 /**
- * This allows us to create Route objects that have their own logger
+ * This allows us to create Route objects that have their own com.tipa.getLogger
  */
 abstract class LoggableRoute : Route, KLoggable by KLogging()
 

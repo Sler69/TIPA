@@ -1,7 +1,7 @@
 package ControllerJV;
 
-import Util.LoggableRoute;
-import Util.SparkUtilKt;
+import com.tipa.Util.LoggableRoute;
+import com.tipa.Util.SparkUtilKt;
 import spark.Request;
 import spark.Response;
 

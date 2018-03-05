@@ -1,4 +1,4 @@
-package Util
+package com.tipa.Util
 
 import com.google.gson.JsonElement
 import com.google.gson.JsonPrimitive

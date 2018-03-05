@@ -1,7 +1,7 @@
-package Controller
+package com.tipa.Controller
 
-import Util.LoggableRoute
-import configuration
+import com.tipa.Util.LoggableRoute
+import com.tipa.configuration
 import spark.Request
 import spark.Response
 import java.io.StringWriter

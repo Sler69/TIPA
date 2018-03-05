@@ -1,7 +1,7 @@
-package Controller
+package com.tipa.Controller
 
-import Util.LoggableRoute
-import Util.prepare
+import com.tipa.Util.LoggableRoute
+import com.tipa.Util.prepare
 import spark.Request
 import spark.Response
 import java.util.ArrayList
