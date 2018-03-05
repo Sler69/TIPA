@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/TIPA.iml" filepath="$PROJECT_DIR$/TIPA.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/TIPA_main.iml" filepath="$PROJECT_DIR$/.idea/modules/TIPA_main.iml" group="TIPA" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/TIPA_test.iml" filepath="$PROJECT_DIR$/.idea/modules/TIPA_test.iml" group="TIPA" />
     </modules>
   </component>
 </project>
