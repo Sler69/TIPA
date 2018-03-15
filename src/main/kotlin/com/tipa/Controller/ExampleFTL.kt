@@ -1,5 +1,6 @@
 package com.tipa.Controller
 
+import Util.Database.Database
 import com.tipa.Util.LoggableRoute
 import com.tipa.configuration
 import spark.Request
@@ -21,7 +22,6 @@ object ExampleFTL : LoggableRoute()  {
         val writer = StringWriter()
 
         formTemplate.process(model, writer);
-
         return writer
     }
 }
