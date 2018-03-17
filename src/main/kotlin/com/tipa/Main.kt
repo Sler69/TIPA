@@ -4,6 +4,7 @@ import com.tipa.Controller.ExampleFTL
 import com.tipa.Controller.ExampleJSON
 import ControllerJV.ExampleFTLJV
 import ControllerJV.ExampleJSONJV
+import Util.Database.Database
 import com.tipa.Util.LocalDateSerializer
 import com.tipa.Util.LocalDateTimeSerializer
 import com.google.gson.Gson
@@ -17,6 +18,8 @@ import spark.Spark
 import freemarker.template.Configuration
 import freemarker.template.Version
 import org.slf4j.LoggerFactory
+import spark.Request
+import spark.Response
 import java.io.StringWriter
 
 
@@ -71,6 +74,10 @@ fun main(args: Array<String>) {
             }
             writer
         })
+        
+        get("health", { request: Request?, response: Response? ->
+            Database.Builder().execute();
+        });
 
         //Example Paths with their own controllers
         post("jsonEX", ExampleJSON)
