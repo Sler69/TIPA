@@ -197,8 +197,9 @@ public class Database {
         try {
 
 
-            dbConnection = DriverManager.getConnection(
-                    DB_CONNECTION, DB_USER,DB_PASSWORD);
+            dbConnection = DriverManager.getConnection("jdbc:sqlserver://estimator-k.database.windows.net:1433;database={database here!!};" +
+                    "user={user here !!!};password={password here!};" +
+                    "encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;");
             /*
             SQLServerDataSource ds = new SQLServerDataSource();
             ds.setUser("UserName");
