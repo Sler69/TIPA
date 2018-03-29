@@ -50,21 +50,15 @@ fun main(args: Array<String>) {
                 halt(401)
             }
         }
-        //Intializing without using their own controller
-        get("/", { _, _ ->
+
+        get("createuser",{_,_->
             val writer = StringWriter()
-            try {
-                val formTemplate = configuration.getTemplate("templates/Example/hello.ftl")
-                val map = HashMap<String, Any>()
-                map.put("message","Hello DEVS")
-                formTemplate.process(map, writer)
-            } catch (e: Exception) {
-                Spark.halt(500)
-            }
+            val formTemplate = configuration.getTemplate("templates/User/createUser.ftl")
+            formTemplate.process( HashMap<String, Any>(), writer)
             writer
         })
 
-        get("login", { _, _ ->
+        get("/", { _, _ ->
             val writer = StringWriter()
             try {
                 val formTemplate = configuration.getTemplate("templates/Login/login.ftl")
@@ -139,5 +133,19 @@ fun main(args: Array<String>) {
 
             writer
         }
+
+        //Tryout PATHS!!
+        get("/hellodevs", { _, _ ->
+            val writer = StringWriter()
+            try {
+                val formTemplate = configuration.getTemplate("templates/Example/hello.ftl")
+                val map = HashMap<String, Any>()
+                map.put("message","Hello DEVS")
+                formTemplate.process(map, writer)
+            } catch (e: Exception) {
+                Spark.halt(500)
+            }
+            writer
+        })
     }
 }
