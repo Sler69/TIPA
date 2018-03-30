@@ -41,9 +41,12 @@ fun main(args: Array<String>) {
 
     configuration.setClassForTemplateLoading(TipaApp::class.java, "/");
     Service.ignite().apply {
+
+        //-------------------Configuration---------------
         port(8050)
         staticFileLocation("/public")
-
+        //-------------------Paths-----------------------
+            //------------Check Session------------------
         before("/*/") { req, res ->
             val session = req.session(true)
 
@@ -53,14 +56,7 @@ fun main(args: Array<String>) {
                 halt(401)
             }
         }
-
-        get("createuser",{_,_->
-            val writer = StringWriter()
-            val formTemplate = configuration.getTemplate("templates/User/createUser.ftl")
-            formTemplate.process( HashMap<String, Any>(), writer)
-            writer
-        })
-
+        //---------------------GET Paths-----------------
         get("/", { _, _ ->
             val writer = StringWriter()
             try {
@@ -71,21 +67,30 @@ fun main(args: Array<String>) {
             }
             writer
         })
-        
-        get("health", { request: Request?, response: Response? ->
-            Database.Builder().execute();
-        });
+        get("createuser",{_,_->
+            val writer = StringWriter()
+            val formTemplate = configuration.getTemplate("templates/User/createUser.ftl")
+            formTemplate.process( HashMap<String, Any>(), writer)
+            writer
+        })
 
-        //Example Paths with their own controllers
-        post("jsonEX", ExampleJSON)
-        get("ftlEX", ExampleFTL)
-        get("ftlJVEX", ExampleFTLJV.INSTANCE)
-        post("jsonEXJV", ExampleJSONJV.INSTANCE)
+
+        //Tryout PATHS!!
+        get("/hellodevs", { _, _ ->
+            val writer = StringWriter()
+            try {
+                val formTemplate = configuration.getTemplate("templates/Example/hello.ftl")
+                val map = HashMap<String, Any>()
+                map.put("message","Hello DEVS")
+                formTemplate.process(map, writer)
+            } catch (e: Exception) {
+                Spark.halt(500)
+            }
+            writer
+        })
 
         get("duda") { request, response ->
-
             val writer = StringWriter()
-
             try {
                 val formTemplate = configuration.getTemplate("templates/Example/form.ftl")
 
@@ -93,7 +98,6 @@ fun main(args: Array<String>) {
             } catch (e: Exception) {
                 Spark.halt(500)
             }
-
             writer
         }
 
@@ -120,35 +124,10 @@ fun main(args: Array<String>) {
                 response.redirect("login",404);
             }
         }
+        post("jsonEX", ExampleJSON)
+        get("ftlEX", ExampleFTL)
+        get("ftlJVEX", ExampleFTLJV.INSTANCE)
+        post("jsonEXJV", ExampleJSONJV.INSTANCE)
 
-        post("dashboard") { request, response ->
-            val writer = StringWriter()
-
-            try {
-                val resultTemplate = configuration.getTemplate("templates/Example/hello.ftl")
-
-                val map = HashMap<String, Any>()
-                map.put("message","HELOOOOOOOOOOO")
-                resultTemplate.process(map, writer)
-            } catch (e: Exception) {
-                Spark.halt(500)
-            }
-
-            writer
-        }
-
-        //Tryout PATHS!!
-        get("/hellodevs", { _, _ ->
-            val writer = StringWriter()
-            try {
-                val formTemplate = configuration.getTemplate("templates/Example/hello.ftl")
-                val map = HashMap<String, Any>()
-                map.put("message","Hello DEVS")
-                formTemplate.process(map, writer)
-            } catch (e: Exception) {
-                Spark.halt(500)
-            }
-            writer
-        })
     }
 }
