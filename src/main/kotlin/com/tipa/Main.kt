@@ -17,6 +17,7 @@ import java.util.HashMap
 import spark.Spark
 import freemarker.template.Configuration
 import freemarker.template.Version
+import mu.NamedKLogging
 import org.slf4j.LoggerFactory
 import spark.Request
 import spark.Response
@@ -28,10 +29,12 @@ val gson: Gson = GsonBuilder()
         .registerTypeAdapter(LocalDate::class.java, LocalDateSerializer())
         .registerTypeAdapter(LocalDateTime::class.java, LocalDateTimeSerializer())
         .create()
+
 val configuration = Configuration(Version(2, 3, 0))
 internal var logger = LoggerFactory.getLogger(TipaApp::class.java)
-object TipaApp {
 
+class TipaApp {
+    companion object : NamedKLogging("NewsApplication")
 }
 fun main(args: Array<String>) {
     BasicConfigurator.configure()
