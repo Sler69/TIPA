@@ -4,11 +4,13 @@ import com.tipa.Controller.ExampleFTL
 import com.tipa.Controller.ExampleJSON
 import ControllerJV.ExampleFTLJV
 import ControllerJV.ExampleJSONJV
-import Util.Database.Database
 import com.tipa.Util.LocalDateSerializer
 import com.tipa.Util.LocalDateTimeSerializer
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.tipa.Controller.DashboardController.DashboardController
+import com.tipa.Controller.UserControllers.LoginController
+import com.tipa.Controller.UserControllers.SaveUserController
 import org.apache.log4j.BasicConfigurator
 import spark.Service
 import java.time.LocalDate
@@ -19,8 +21,6 @@ import freemarker.template.Configuration
 import freemarker.template.Version
 import mu.NamedKLogging
 import org.slf4j.LoggerFactory
-import spark.Request
-import spark.Response
 import java.io.StringWriter
 
 
@@ -30,7 +30,7 @@ val gson: Gson = GsonBuilder()
         .registerTypeAdapter(LocalDateTime::class.java, LocalDateTimeSerializer())
         .create()
 
-val configuration = Configuration(Version(2, 3, 0))
+internal var configuration = Configuration(Version(2, 3, 0))
 internal var logger = LoggerFactory.getLogger(TipaApp::class.java)
 
 class TipaApp {
@@ -56,6 +56,7 @@ fun main(args: Array<String>) {
                 halt(401)
             }
         }
+
         //---------------------GET Paths-----------------
         get("/", { _, _ ->
             val writer = StringWriter()
@@ -74,6 +75,11 @@ fun main(args: Array<String>) {
             writer
         })
 
+
+        post("saveuser", SaveUserController)
+        post("login",LoginController)
+
+        get("dashboard/",DashboardController)
 
         //Tryout PATHS!!
         get("/hellodevs", { _, _ ->
@@ -124,6 +130,7 @@ fun main(args: Array<String>) {
                 response.redirect("login",404);
             }
         }
+
         post("jsonEX", ExampleJSON)
         get("ftlEX", ExampleFTL)
         get("ftlJVEX", ExampleFTLJV.INSTANCE)

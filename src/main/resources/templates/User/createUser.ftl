@@ -19,6 +19,7 @@
             </div>
             <div class="card-content">
                 <h1 class="title is-centered" style="margin-left:40%">TIPA</h1>
+                <div name="form" ng-show="createuser.hideForm">
                 <div class="field is-horizontal">
                     <div class="field-label is-normal">
                         <label class="label">Nombre</label>
@@ -103,6 +104,17 @@
                     </div>
                 </div>
                 <a class="button is-info login-button create-user-button" ng-click="createuser.createUser()" ng-disabled="createuser.enabledButton">Crear usuario</a>
+                </div>
+                <div ng-show="createuser.succesfullInsert">
+                    <h2 class="title has-text-centered">¡Usuario creado exitosamente!</h2>
+                    <p class=" is-center">Se ha creado su usuario de forma exitosa por favor ingresar con su mail o usuario con la contraseña que usted escogio.</p>
+                    <a class="button is-success login-button is-centered" href="/">Login</a>
+                </div>
+                <div ng-show="createuser.errorInsert">
+                    <h2 class="centering title has-text-centered">Error en el Sistema</h2>
+                    <p class="is-danger has-text-centered">Hubo un error en el sistema por favor tratar mas tarde</p>
+                    <a class="button is-danger create-user-button " href="/">Regresar a pagina principal</a>
+                </div>
             </div>
         </div>
 </div>

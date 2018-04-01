@@ -12,9 +12,9 @@ import java.util.function.Consumer;
 public class Database {
 
     private static final String DB_DRIVER = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    private static final String DB_CONNECTION = "jdbc:sqlserver://localhost:1433;databaseName=AdventureWorks";
-    private static final String DB_USER = "user";
-    private static final String DB_PASSWORD = "password";
+    private static final String DB_USER = "danielsadac@estimator-k";
+    private static final String DB_PASSWORD = "Yzy@WJfAh4fmiWpV";
+    private static final String DB="estimator";
 
     private static final Preparable EMPTY_PREPARABLE = statement -> {
     };
@@ -195,20 +195,10 @@ public class Database {
         }
 
         try {
-
-
-            dbConnection = DriverManager.getConnection("jdbc:sqlserver://estimator-k.database.windows.net:1433;database={database here!!};" +
-                    "user={user here !!!};password={password here!};" +
+            dbConnection = DriverManager.getConnection("jdbc:sqlserver://estimator-k.database.windows.net:1433;database=" +DB+";" +
+                    "user="+DB_USER+";password="+DB_PASSWORD+";" +
                     "encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;");
-            /*
-            SQLServerDataSource ds = new SQLServerDataSource();
-            ds.setUser("UserName");
-            ds.setPassword("*****");
-            ds.setServerName("localhost");
-            ds.setPortNumber(1433);
-            ds.setDatabaseName("AdventureWorks");
-            return dbConnection;
-            */
+
         } catch (SQLException e) {
 
             System.out.println(e.getMessage());

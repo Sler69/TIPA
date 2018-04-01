@@ -20,8 +20,8 @@
 </head>
     <body>
 
-    <div class="card-login" ng-app="appLogin" ng-controller="LoginController as login">
-        <form method="POST" action="/dashboard" id="formLogin">
+    <div class="card-login">
+        <form method="POST" action="/login" id="formLogin">
         <div class="card">
             <div class="card-image is-1by2">
                     <figure class="image">
@@ -32,7 +32,7 @@
                     <h1 class="title is-centered" style="margin-left:40%">TIPA</h1>
                     <div class="field field-login">
                         <p class="control has-icons-left ">
-                            <input class="input" type="email" placeholder="Email" >
+                            <input name="usernameTIPA" name="usernameTIPA" class="input" type="text" placeholder="Email" >
                             <span class="icon is-small is-left">
                                 <svg class="icon-avatar field-icon" >
 
@@ -42,7 +42,7 @@
                     </div>
                     <div class="field field-login">
                         <p class="control has-icons-left">
-                            <input class="input" type="password" placeholder="Password">
+                            <input name="passwordTIPA" id="passwordTIPA" class="input" type="password" placeholder="Password">
                             <span class="icon is-small is-left">
                                 <i class="icon-cancel field-icon"></i>
                             </span>

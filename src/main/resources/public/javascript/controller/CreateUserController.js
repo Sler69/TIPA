@@ -25,6 +25,9 @@
         vm.enabledButton =true;
         vm.passwordsMatch =false;
 
+        vm.hideForm = true;
+        vm.succesfullInsert = false;
+        vm.errorInsert = false;
         //Info-view
         vm.passwordStrength = -1;
 
@@ -53,16 +56,22 @@
                 "password":vm.password,
                 "gender":vm.gender
             }
-            console.log(data)
 
-            /*
-            $http.post('/createuser',data)
+            $http.post('/saveuser',data)
                 .then(function successCallback(response) {
-
+                    debugger
+                    var info = response.data.statusInsert;
+                    if(info){
+                        vm.hideForm = false;
+                        vm.succesfullInsert = true;
+                        vm.errorInsert = false;
+                    }else{
+                        vm.errorInsert = true;
+                    }
                     },function errorCallback() {
-
+                        vm.errorInsert = true;
                 });
-            */
+
         }
 
         function checkEmail(){
@@ -134,7 +143,7 @@
         }
 
         function checkForm(){
-            if(!vm.requiredFirstName && !vm.requiredName && !vm.errorEmail && !vm.requiredEmail && !vm.requiredUserName && !vm.requiredPassword && vm.validatePassword){
+            if(!vm.requiredFirstName && !vm.requiredName && !vm.errorEmail && !vm.requiredEmail && !vm.requiredUserName && !vm.requiredPassword && vm.validatePassword && !vm.passwordsMatch ){
                 vm.enabledButton = false;
             }else{
                 vm.enabledButton = true;
