@@ -29,7 +29,8 @@
                             <p class="control is-expanded">
                                 <input class="input" type="text" placeholder="Nombre"
                                        ng-model="createuser.name"
-                                       ng-change="createuser.checkName()">
+                                       ng-change="createuser.checkName()"
+                                       ng-blur="createuser.checkForm()">
                             </p>
                             <p class="help is-danger" ng-show="createuser.requiredName">Campo requerido*</p>
                         </div>
@@ -37,7 +38,8 @@
                             <p class="control is-expanded">
                                 <input class="input " type="text" placeholder="Primer Apellido"
                                        ng-model="createuser.firstName"
-                                       ng-change="createuser.checkFirstName()">
+                                       ng-change="createuser.checkFirstName()"
+                                       ng-blur="createuser.checkForm()">
                             </p>
                             <p class="help is-danger" ng-show="createuser.requiredFirstName">Campo requerido*</p>
                         </div>
@@ -53,7 +55,8 @@
                     <div class="control">
                         <input class="input" type="text" placeholder="Text input"
                                ng-model="createuser.userName"
-                               ng-change="createuser.checkUserName()">
+                               ng-change="createuser.checkUserName()"
+                               ng-blur="createuser.checkForm()">
                     </div>
                     <p class="help is-danger" ng-show="createuser.requiredUserName">Campo requerido*</p>
                 </div>
@@ -97,7 +100,8 @@
                 <div class="control">
                     <label class="label">Genero</label>
                     <div class="select">
-                        <select ng-model="createuser.gender" ng-change="createuser.checkForm()">
+                        <select ng-model="createuser.gender"
+                                ng-change="createuser.checkForm()">
                             <option>Masculino</option>
                             <option>Femenino</option>
                         </select>

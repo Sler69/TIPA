@@ -5,17 +5,21 @@ import com.tipa.TipaApp
 import com.tipa.Util.LoggableRoute
 import com.tipa.Util.bodyAs
 import com.tipa.Util.prepare
+import org.slf4j.LoggerFactory
 import spark.Request
 import spark.Response
 import java.util.HashMap
 
+internal var logger = LoggerFactory.getLogger(SaveUserController::class.java)
+
 object SaveUserController : LoggableRoute()  {
     override fun handle(request: Request, response: Response): Any {
+
         val userform = request.bodyAs(UserForm::class.java)
 
         val model = HashMap<String, Any>()
 
-        TipaApp.logger.warn { "Creating user to Database!" }
+        SaveUserController.logger.warn { "Creating user to Database!" }
 
         val statusInsert = UserDao.addUser(userform)
 

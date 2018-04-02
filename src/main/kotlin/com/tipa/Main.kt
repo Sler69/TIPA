@@ -8,9 +8,11 @@ import com.tipa.Util.LocalDateSerializer
 import com.tipa.Util.LocalDateTimeSerializer
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.tipa.Controller.DashboardController.DashboardController
+import com.tipa.Controller.DashboardController.DashboardRenderController
 import com.tipa.Controller.UserControllers.LoginController
 import com.tipa.Controller.UserControllers.SaveUserController
+import com.tipa.Controller.UserControllers.UserRenderController
+import com.tipa.Controller.UserControllers.UserVerificationController
 import org.apache.log4j.BasicConfigurator
 import spark.Service
 import java.time.LocalDate
@@ -21,6 +23,8 @@ import freemarker.template.Configuration
 import freemarker.template.Version
 import mu.NamedKLogging
 import org.slf4j.LoggerFactory
+import spark.Request
+import spark.Response
 import java.io.StringWriter
 
 
@@ -58,28 +62,19 @@ fun main(args: Array<String>) {
         }
 
         //---------------------GET Paths-----------------
-        get("/", { _, _ ->
-            val writer = StringWriter()
-            try {
-                val formTemplate = configuration.getTemplate("templates/Login/login.ftl")
-                formTemplate.process(null, writer)
-            } catch (e: Exception) {
-                Spark.halt(500)
-            }
-            writer
-        })
-        get("createuser",{_,_->
-            val writer = StringWriter()
-            val formTemplate = configuration.getTemplate("templates/User/createUser.ftl")
-            formTemplate.process( HashMap<String, Any>(), writer)
-            writer
-        })
+        //RenderViews
+        get("/", { request:Request,response:Response -> UserRenderController.renderLoginUserView(request,response)})
+        get("createuser",{request: Request, response:Response-> UserRenderController.renderCreateUserView(request,response) })
+        get("nouserfound",{request: Request, response:Response-> UserRenderController.renderUserNotFoundView(request,response) })
+        get("wrongcredentials",{request: Request, response:Response-> UserRenderController.renderWrongCredentialsView(request,response) })
+        get("dashboard/",{request: Request, response: Response -> DashboardRenderController.renderDashboardView(request,response) })
 
+        //Data driven functions
+        post("lol",{request: Request, response: Response -> UserVerificationController.findEmail(response,request) })
 
+        //Logic Controllers
         post("saveuser", SaveUserController)
         post("login",LoginController)
-
-        get("dashboard/",DashboardController)
 
         //Tryout PATHS!!
         get("/hellodevs", { _, _ ->
