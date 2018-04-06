@@ -27,12 +27,12 @@
 
         vm.hideForm = true;
         vm.succesfullInsert = false;
-        vm.errorInsert = false;
         //Info-view
         vm.passwordStrength = -1;
 
         //Class Binding
         vm.userEmailClass="";
+        vm.errorModalClass = "";
 
         //Functions
         vm.createUser = createUser;
@@ -44,6 +44,7 @@
         vm.checkName = checkName;
         vm.checkFirstName = checkFirstName;
         vm.checkMatchPassword = checkMatchPassword;
+        vm.closeModal = closeModal;
 
         function createUser() {
 
@@ -59,19 +60,20 @@
 
             $http.post('/saveuser',data)
                 .then(function successCallback(response) {
-                    debugger
                     var info = response.data.statusInsert;
                     if(info){
                         vm.hideForm = false;
                         vm.succesfullInsert = true;
-                        vm.errorInsert = false;
                     }else{
-                        vm.errorInsert = true;
+                        vm.errorModalClass = "is-active";
                     }
                     },function errorCallback() {
-                        vm.errorInsert = true;
+                        vm.errorModalClass = "is-active";
                 });
 
+        }
+        function closeModal(){
+            vm.errorModalClass = "";
         }
 
         function checkEmail(){

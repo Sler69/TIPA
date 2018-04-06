@@ -25,7 +25,7 @@ object UserDao{
                         statement.setString(6,user.password)
                         statement.setString(7,user.gender)
                     }.onError{error->
-                    logger.error ("There was an error with : \"$error\" ")
+                    logger.error ("There was an error while creating the user: \"$error\" ")
                 }.execute()
     }
 
