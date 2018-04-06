@@ -68,7 +68,8 @@ fun main(args: Array<String>) {
         get("nouserfound",{request: Request, response:Response-> UserRenderController.renderUserNotFoundView(request,response) })
         get("wrongcredentials",{request: Request, response:Response-> UserRenderController.renderWrongCredentialsView(request,response) })
         get("dashboard/",{request: Request, response: Response -> DashboardRenderController.renderDashboardView(request,response) })
-
+        /*Inicio*/
+        get("scalefactors", {request:Request,response:Response -> UserRenderController.renderScaleFactorsView(request,response) })
         //Data driven functions
         post("lol",{request: Request, response: Response -> UserVerificationController.findEmail(response,request) })
 

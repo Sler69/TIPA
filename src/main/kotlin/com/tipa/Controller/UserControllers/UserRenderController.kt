@@ -1,6 +1,7 @@
 package com.tipa.Controller.UserControllers
 
 import com.tipa.configuration
+import org.omg.CORBA.Object
 import spark.Request
 import spark.Response
 import spark.Spark
@@ -34,6 +35,15 @@ class UserRenderController {
             val writer = StringWriter()
             val formTemplate = configuration.getTemplate("templates/Login/wrongCredentials.ftl")
             formTemplate.process( null, writer)
+            return writer.toString();
+        }
+
+        fun renderScaleFactorsView(req:Request,resp:Response):String{
+            val writer = StringWriter()
+            val formTemplate = configuration.getTemplate("templates/ScaleFactors/scaleFactors.ftl")
+            val hasshecito = HashMap<String,Any>()
+            hasshecito.put("message","HOLA MARINA2!!!!!!!")
+            formTemplate.process( hasshecito, writer)
             return writer.toString();
         }
     }
