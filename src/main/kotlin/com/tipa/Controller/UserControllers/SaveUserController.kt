@@ -24,7 +24,9 @@ object SaveUserController : LoggableRoute()  {
         val statusInsert = UserDao.addUser(userform)
 
         val succesfulInsert = statusInsert == 1
-
+        if(!succesfulInsert){
+            response.status(408)
+        }
         model.put("statusInsert" , false)
 
         return response.prepare(200, model)
