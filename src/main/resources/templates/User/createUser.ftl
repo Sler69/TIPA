@@ -10,7 +10,6 @@
     <script src="javascript/zxcvbn/zxcvbn.js"></script>
 </head>
 <body>
-<#include "../Base/header.ftl">
 <div class="card-form" ng-app="createUser" ng-controller="CreateUserController as createuser">
         <div class="card">
             <div class="card-image is-1by2">
