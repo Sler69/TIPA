@@ -36,5 +36,12 @@ class UserRenderController {
             formTemplate.process( null, writer)
             return writer.toString();
         }
+
+        fun renderUserInformation(req:Request,resp: Response):String{
+            val writer = StringWriter()
+            val formTemplate = configuration.getTemplate("templates/User/userInfo.ftl")
+            formTemplate.process( null, writer)
+            return writer.toString();
+        }
     }
 }

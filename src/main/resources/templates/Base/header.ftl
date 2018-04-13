@@ -1,7 +1,7 @@
 <nav class="navbar is-black">
   <div class="navbar-brand">
       <a class="navbar-item" href="/dashboard/">
-          <img src="/images/logoCenterWhite.png" width="50" height="50">
+          <img src="/images/logoCenterWhite.png" width="45" height="50">
       </a>
   </div>
 
@@ -41,7 +41,7 @@
                   Mi Cuenta
               </a>
               <div class="navbar-dropdown is-boxed">
-                  <a class="navbar-item">
+                  <a class="navbar-item" href="/userinfo/">
                       Ver Detalles
                   </a>
                   <a class="navbar-item" >
