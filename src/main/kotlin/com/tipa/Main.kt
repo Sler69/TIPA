@@ -9,6 +9,7 @@ import com.tipa.Util.LocalDateTimeSerializer
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.tipa.Controller.DashboardController.DashboardRenderController
+import com.tipa.Controller.Project.ProjectRenderController
 import com.tipa.Controller.UserControllers.LoginController
 import com.tipa.Controller.UserControllers.SaveUserController
 import com.tipa.Controller.UserControllers.UserRenderController
@@ -69,7 +70,7 @@ fun main(args: Array<String>) {
         get("wrongcredentials",{request: Request, response:Response-> UserRenderController.renderWrongCredentialsView(request,response) })
         get("dashboard/",{request: Request, response: Response -> DashboardRenderController.renderDashboardView(request,response) })
         /*Inicio*/
-        get("scalefactors", {request:Request,response:Response -> UserRenderController.renderScaleFactorsView(request,response) })
+        get("scalefactors", {request:Request,response:Response -> ProjectRenderController.renderScaleFactorsView(request,response) })
         //Data driven functions
         post("lol",{request: Request, response: Response -> UserVerificationController.findEmail(response,request) })
 
