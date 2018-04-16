@@ -34,12 +34,13 @@
         <tbody>
             <tr>
                 <th style="text-align: center"> Precedentedness </th>
-                    <td style="text-align: center"> <button class="button is-small buttom-style" ng-click="sf.optionPrecedents('one')" > Thoroughly unprecedent</button></td>
-                    <td style="text-align: center"> <button class="button is-small buttom-style" ng-click="sf.optionPrecedents('two')" > Largely unprecedent </button></td>
-                    <td style="text-align: center"> <button class="button is-small buttom-style" ng-click="sf.optionPrecedents()" > Somewhat unprecedent </button ></td>
-                    <td style="text-align: center"> <button class="button is-small buttom-style" ng-click="sf.optionPrecedents()" > Generaly familiar </button ></td>
-                    <td style="text-align: center"> <button class="button is-small buttom-style" ng-click="sf.optionPrecedents()" > Largely familiar</button ></td>
-                    <td style="text-align: center"> <button class="button is-small buttom-style" ng-click="sf.optionPrecedents()" > Thoroughly familiar </button ></td>
+                    <td style="text-align: center"> <button class="button is-small buttom-style" ng-click="sf.optionPrecedents(1)" ng-class="sf.bP1"> Thoroughly unprecedent</button></td>
+                    <td style="text-align: center"> <button class="button is-small buttom-style" ng-click="sf.optionPrecedents(2)" ng-class="sf.bP2" > Largely unprecedent </button></td>
+                    <td style="text-align: center"> <button class="button is-small buttom-style" ng-click="sf.optionPrecedents(3)" ng-class="sf.bP3"> Somewhat unprecedent </button ></td>
+                    <td style="text-align: center"> <button class="button is-small buttom-style" ng-click="sf.optionPrecedents(4)" ng-class="sf.bP4"> Generaly familiar </button ></td>
+                    <td style="text-align: center"> <button class="button is-small buttom-style" ng-click="sf.optionPrecedents(5)" ng-class="sf.bP5"> Largely familiar</button ></td>
+                    <td style="text-align: center"> <button class="button is-small buttom-style" ng-click="sf.optionPrecedents(6)" ng-class="sf.bP6"> Thoroughly familiar </button ></td>
+
             </tr>
             <tr>
                 <th style="text-align: center"> <p>Development</p> <p>Flexibility</p> </th>
@@ -82,7 +83,7 @@
     </table>
 
     <div >
-        <button class="button is-medium " style="margin-left: 90%" id="next" ng-click="sf.optionPrecedents(5)" ng-class="sf.buttonClass"> Next </button>
+        <button class="button is-medium " style="margin-left: 90%" > Next </button>
     </div>
 </div>
 
