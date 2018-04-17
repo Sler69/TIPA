@@ -34,49 +34,49 @@
         <tbody>
             <tr>
                 <th style="text-align: center"> Precedentedness </th>
-                    <td style="text-align: center"> <button class="button is-small buttom-style" ng-click="sf.optionPrecedents(1)" ng-class="sf.bP1"> Thoroughly unprecedent</button></td>
-                    <td style="text-align: center"> <button class="button is-small buttom-style" ng-click="sf.optionPrecedents(2)" ng-class="sf.bP2" > Largely unprecedent </button></td>
-                    <td style="text-align: center"> <button class="button is-small buttom-style" ng-click="sf.optionPrecedents(3)" ng-class="sf.bP3"> Somewhat unprecedent </button ></td>
-                    <td style="text-align: center"> <button class="button is-small buttom-style" ng-click="sf.optionPrecedents(4)" ng-class="sf.bP4"> Generaly familiar </button ></td>
-                    <td style="text-align: center"> <button class="button is-small buttom-style" ng-click="sf.optionPrecedents(5)" ng-class="sf.bP5"> Largely familiar</button ></td>
-                    <td style="text-align: center"> <button class="button is-small buttom-style" ng-click="sf.optionPrecedents(6)" ng-class="sf.bP6"> Thoroughly familiar </button ></td>
+                    <td style="text-align: center"> <button class="button is-small buttom-style" ng-click="sf.optionPrecedents(6.20)" ng-class="sf.bP1"> Thoroughly unprecedent</button></td>
+                    <td style="text-align: center"> <button class="button is-small buttom-style" ng-click="sf.optionPrecedents(4.96)" ng-class="sf.bP2" > Largely unprecedent </button></td>
+                    <td style="text-align: center"> <button class="button is-small buttom-style" ng-click="sf.optionPrecedents(3.72)" ng-class="sf.bP3"> Somewhat unprecedent </button ></td>
+                    <td style="text-align: center"> <button class="button is-small buttom-style" ng-click="sf.optionPrecedents(2.48)" ng-class="sf.bP4"> Generaly familiar </button ></td>
+                    <td style="text-align: center"> <button class="button is-small buttom-style" ng-click="sf.optionPrecedents(1.24)" ng-class="sf.bP5"> Largely familiar</button ></td>
+                    <td style="text-align: center"> <button class="button is-small buttom-style" ng-click="sf.optionPrecedents(0.0)"  ng-class="sf.bP6"> Thoroughly familiar </button ></td>
 
             </tr>
             <tr>
                 <th style="text-align: center"> <p>Development</p> <p>Flexibility</p> </th>
-                <td style="text-align: center"> <button class="button is-small buttom-style-2" ng-click="sf.optionDevelp()" > Rigorous </button ></td>
-                <td style="text-align: center"> <button class="button is-small buttom-style-2" ng-click="sf.optionDevelp()" > Occasional relaxation  </button ></td>
-                <td style="text-align: center"> <button class="button is-small buttom-style-2" ng-click="sf.optionDevelp()" > Some relaxation </button ></td>
-                <td style="text-align: center"> <button class="button is-small buttom-style-2" ng-click="sf.optionDevelp()" > Generaly Conformity </button ></td>
-                <td style="text-align: center"> <button class="button is-small buttom-style-2" ng-click="sf.optionDevelp()" > Some conformity</button ></td>
-                <td style="text-align: center"> <button class="button is-small buttom-style-2" ng-click="sf.optionDevelp()" > General goals </button ></td>
+                <td style="text-align: center"> <button class="button is-small buttom-style-2" ng-click="sf.optionDevelopment(5.07)" ng-class="sf.bD1"> Rigorous </button ></td>
+                <td style="text-align: center"> <button class="button is-small buttom-style-2" ng-click="sf.optionDevelopment(4.05)" ng-class="sf.bD2"> Occasional relaxation  </button ></td>
+                <td style="text-align: center"> <button class="button is-small buttom-style-2" ng-click="sf.optionDevelopment(3.04)" ng-class="sf.bD3"> Some relaxation </button ></td>
+                <td style="text-align: center"> <button class="button is-small buttom-style-2" ng-click="sf.optionDevelopment(2.03)" ng-class="sf.bD4"> Generaly Conformity </button ></td>
+                <td style="text-align: center"> <button class="button is-small buttom-style-2" ng-click="sf.optionDevelopment(1.01)" ng-class="sf.bD5"> Some conformity</button ></td>
+                <td style="text-align: center"> <button class="button is-small buttom-style-2" ng-click="sf.optionDevelopment(0.0)"  ng-class="sf.bD6"> General goals </button ></td>
             </tr>
             <tr>
                 <th style="text-align: center"> <p>Architecture /</p> <p>Risk Resolution</p> </th>
-                <td style="text-align: center"> <button class="button is-small buttom-style" ng-click="sf.option()" > 20% </button ></td>
-                <td style="text-align: center"> <button class="button is-small buttom-style" ng-click="sf.option()" > 40% </button ></td>
-                <td style="text-align: center"> <button class="button is-small buttom-style" ng-click="sf.option()" > 60% </button ></td>
-                <td style="text-align: center"> <button class="button is-small buttom-style" ng-click="sf.option()" > 75% </button ></td>
-                <td style="text-align: center"> <button class="button is-small buttom-style" ng-click="sf.option()" > 90% </button ></td>
-                <td style="text-align: center"> <button class="button is-small buttom-style" ng-click="sf.option()" > 100% </button ></td>
+                <td style="text-align: center"> <button class="button is-small buttom-style" ng-click="sf.optionArchitecture(7.07)" ng-class="sf.bA1"> 20% </button ></td>
+                <td style="text-align: center"> <button class="button is-small buttom-style" ng-click="sf.optionArchitecture(5.65)" ng-class="sf.bA2"> 40% </button ></td>
+                <td style="text-align: center"> <button class="button is-small buttom-style" ng-click="sf.optionArchitecture(4.24)" ng-class="sf.bA3"> 60% </button ></td>
+                <td style="text-align: center"> <button class="button is-small buttom-style" ng-click="sf.optionArchitecture(2.83)" ng-class="sf.bA4"> 75% </button ></td>
+                <td style="text-align: center"> <button class="button is-small buttom-style" ng-click="sf.optionArchitecture(1.41)" ng-class="sf.bA5"> 90% </button ></td>
+                <td style="text-align: center"> <button class="button is-small buttom-style" ng-click="sf.optionArchitecture(0.0)"  ng-class="sf.bA6"> 100% </button ></td>
             </tr>
             <tr>
                 <th style="text-align: center"> Team cohesion </th>
-                <td style="text-align: center"> <button class="button is-small buttom-style-2" ng-click="sf.option()" > Very difficult </button ></td>
-                <td style="text-align: center"> <button class="button is-small buttom-style-2" ng-click="sf.option()" > Some difficult </button ></td>
-                <td style="text-align: center"> <button class="button is-small buttom-style-2" ng-click="sf.option()" > Basically cooperative </button ></td>
-                <td style="text-align: center"> <button class="button is-small buttom-style-2" ng-click="sf.option()" > Largely cooperative </button ></td>
-                <td style="text-align: center"> <button class="button is-small buttom-style-2" ng-click="sf.option()" > Highly Cooperative </button ></td>
-                <td style="text-align: center"> <button class="button is-small buttom-style-2" ng-click="sf.option()" > Seamless interaction </button ></td>
+                <td style="text-align: center"> <button class="button is-small buttom-style-2" ng-click="sf.optionCohesion(5.48)" ng-class="sf.bC1"> Very difficult </button ></td>
+                <td style="text-align: center"> <button class="button is-small buttom-style-2" ng-click="sf.optionCohesion(4.38)" ng-class="sf.bC2"> Some difficult </button ></td>
+                <td style="text-align: center"> <button class="button is-small buttom-style-2" ng-click="sf.optionCohesion(3.29)" ng-class="sf.bC3"> Basically cooperative </button ></td>
+                <td style="text-align: center"> <button class="button is-small buttom-style-2" ng-click="sf.optionCohesion(2.19)" ng-class="sf.bC4"> Largely cooperative </button ></td>
+                <td style="text-align: center"> <button class="button is-small buttom-style-2" ng-click="sf.optionCohesion(1.10)" ng-class="sf.bC5"> Highly Cooperative </button ></td>
+                <td style="text-align: center"> <button class="button is-small buttom-style-2" ng-click="sf.optionCohesion(0.0)"  ng-class="sf.bC6"> Seamless interaction </button ></td>
             </tr>
             <tr>
                 <th style="text-align: center"> <p>Equivalent </p> <p>Process Maturity </p> </th>
-                <td style="text-align: center"> <button class="button is-small buttom-style" ng-click="sf.option()" > Level 1 low </button ></td>
-                <td style="text-align: center"> <button class="button is-small buttom-style" ng-click="sf.option()" > Level 1 upper </button ></td>
-                <td style="text-align: center"> <button class="button is-small buttom-style" ng-click="sf.option()" > Level 2 </button ></td>
-                <td style="text-align: center"> <button class="button is-small buttom-style" ng-click="sf.option()" > Level 3 </button ></td>
-                <td style="text-align: center"> <button class="button is-small buttom-style" ng-click="sf.option()" > Level 4 </button ></td>
-                <td style="text-align: center"> <button class="button is-small buttom-style" ng-click="sf.option()" ng-click="sf.option()" ng-click="sf.option()" > Level 5 </button ></td>
+                <td style="text-align: center"> <button class="button is-small buttom-style" ng-click="sf.optionMaturity(7.80)" ng-class="sf.bM1"> Level 1 low </button ></td>
+                <td style="text-align: center"> <button class="button is-small buttom-style" ng-click="sf.optionMaturity(6.24)" ng-class="sf.bM2"> Level 1 upper </button ></td>
+                <td style="text-align: center"> <button class="button is-small buttom-style" ng-click="sf.optionMaturity(4.68)" ng-class="sf.bM3"> Level 2 </button ></td>
+                <td style="text-align: center"> <button class="button is-small buttom-style" ng-click="sf.optionMaturity(3.12)" ng-class="sf.bM4"> Level 3 </button ></td>
+                <td style="text-align: center"> <button class="button is-small buttom-style" ng-click="sf.optionMaturity(1.56)" ng-class="sf.bM5"> Level 4 </button ></td>
+                <td style="text-align: center"> <button class="button is-small buttom-style" ng-click="sf.optionMaturity(0.0)"  ng-class="sf.bM6"> Level 5 </button ></td>
 
             </tr>
         </tbody>
