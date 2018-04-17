@@ -12,23 +12,23 @@
                   Organizaciones
               </a>
               <div class="navbar-dropdown is-boxed">
-                  <a class="navbar-item" >
+                  <a class="navbar-item" href="/createorganization/" >
                       Crear Organizacion
                   </a>
-                  <a class="navbar-item" >
+                  <a class="navbar-item" href="/organizations/" >
                       Ver Organizaciones
                   </a>
               </div>
           </div>
           <div class="navbar-item has-dropdown is-hoverable">
-              <a class="navbar-link" href="/documentation/overview/start/">
+              <a class="navbar-link" href="">
                   Proyectos
               </a>
               <div class="navbar-dropdown is-boxed">
-                  <a class="navbar-item" href="/documentation/overview/start/">
+                  <a class="navbar-item" href="">
                       Crear Proyecto
                   </a>
-                  <a class="navbar-item" href="https://bulma.io/documentation/modifiers/syntax/">
+                  <a class="navbar-item" href="">
                       Ver Proyectos
                   </a>
               </div>
@@ -44,7 +44,7 @@
                   <a class="navbar-item" href="/userinfo/">
                       Ver Detalles
                   </a>
-                  <a class="navbar-item" >
+                  <a class="navbar-item" href="/logout/">
                       Log Out
                   </a>
               </div>

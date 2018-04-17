@@ -63,7 +63,7 @@ object UserDao{
 
     fun verifyEmail(email:String):Boolean{
         val query = """
-                SELECT COUNT(*) FROM Users WHERE email = ?
+                SELECT COUNT(*) FROM Users WHERE emailUser = ?
             """
         val lngUsernames =Database.Builder()
                 .statement(query)
@@ -79,7 +79,7 @@ object UserDao{
 
     fun getUserWithEmail(email: String,password:String):List<UserDTO>{
         val query = """
-                SELECT * FROM Users WHERE email = ? AND password = ?
+                SELECT * FROM Users WHERE emailUser = ? AND password = ?
             """
         return  Database.Builder()
                 .statement(query)

@@ -9,10 +9,9 @@ import com.tipa.Util.LocalDateTimeSerializer
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.tipa.Controller.DashboardController.DashboardRenderController
-import com.tipa.Controller.UserControllers.LoginController
-import com.tipa.Controller.UserControllers.SaveUserController
-import com.tipa.Controller.UserControllers.UserRenderController
-import com.tipa.Controller.UserControllers.UserVerificationController
+import com.tipa.Controller.OrganizationControllers.OrganizationRenderController
+import com.tipa.Controller.UserControllers.*
+import com.tipa.Util.StringConstants
 import org.apache.log4j.BasicConfigurator
 import spark.Service
 import java.time.LocalDate
@@ -50,13 +49,16 @@ fun main(args: Array<String>) {
         port(8050)
         staticFileLocation("/public")
         //-------------------Paths-----------------------
-            //------------Check Session------------------
-        before("/*/") { req, res ->
-            val session = req.session(true)
 
-            if (false) {
+        //------------Check Session------------------
+        before("/*/") { req, res ->
+            val idUser = req.session().attribute<String>(StringConstants.ID);
+            logger.warn("The id user in the session is: $idUser")
+
+            //Comment out this if block if you want to test out things without a session
+            if (idUser == null) {
                 logger.warn("Secured Area! Login is REQUIRED")
-                res.redirect("/login")
+                res.redirect("/")
                 halt(401)
             }
         }
@@ -69,12 +71,17 @@ fun main(args: Array<String>) {
         get("wrongcredentials",{request: Request, response:Response-> UserRenderController.renderWrongCredentialsView(request,response) })
         get("dashboard/",{request: Request, response: Response -> DashboardRenderController.renderDashboardView(request,response) })
         get("userinfo/",{request:Request,response:Response -> UserRenderController.renderUserInformation(request,response)})
+        get("organizations/",{request: Request, response: Response -> OrganizationRenderController.renderOraganizations(request,response) })
+        get("createorganization/",{request: Request, response: Response -> OrganizationRenderController.renderCreateOrganization(request,response) })
+
+
         //Data driven functions
         post("lol",{request: Request, response: Response -> UserVerificationController.findEmail(response,request) })
 
-        //Logic Controllers
+        //Logic Controllers for users
         post("saveuser", SaveUserController)
         post("login",LoginController)
+        get("logout/", LogoutController)
 
         //Tryout PATHS!!
         get("/hellodevs", { _, _ ->

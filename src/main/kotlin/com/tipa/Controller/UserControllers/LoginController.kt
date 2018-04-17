@@ -75,6 +75,7 @@ object LoginController : LoggableRoute()  {
     }
 
     fun addUserToSession(user:UserDTO,session: Session){
+
         session.maxInactiveInterval(IntConstant.TIMEOUT_TIME)
         session.attribute(StringConstants.USERNAME, user.userName)
         session.attribute(StringConstants.ID, user.id.toString())

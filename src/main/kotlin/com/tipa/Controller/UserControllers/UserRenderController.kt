@@ -6,7 +6,6 @@ import spark.Response
 import spark.Spark
 import java.io.StringWriter
 import java.util.HashMap
-
 class UserRenderController {
     companion object {
         fun renderCreateUserView(req: Request, resp: Response): String {
