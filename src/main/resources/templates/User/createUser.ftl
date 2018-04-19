@@ -114,13 +114,24 @@
                     <p class=" is-center">Se ha creado su usuario de forma exitosa por favor ingresar con su mail o usuario con la contraseña que usted escogio.</p>
                     <a class="button is-success login-button is-centered" href="/">Login</a>
                 </div>
-                <div ng-show="createuser.errorInsert">
-                    <h2 class="centering title has-text-centered">Error en el Sistema</h2>
-                    <p class="is-danger has-text-centered">Hubo un error en el sistema por favor tratar mas tarde</p>
-                    <a class="button is-danger create-user-button " href="/">Regresar a pagina principal</a>
-                </div>
             </div>
         </div>
+    <div class="modal" ng-class="createuser.errorModalClass">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Error en el Sistema</p>
+                <button class="delete" aria-label="close" ng-click="createuser.closeModal()"></button>
+            </header>
+            <section class="modal-card-body">
+                <p class="is-danger has-text-centered">Hubo un error en el sistema por favor tratar mas tarde</p>
+                <a class="button is-danger create-user-button " href="/">Regresar a pagina principal</a>
+            </section>
+            <footer class="modal-card-foot">
+                <button class="button" ng-click="createuser.closeModal()">Cancelar</button>
+            </footer>
+        </div>
+    </div>
 </div>
 </body>
 </html>
