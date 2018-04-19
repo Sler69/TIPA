@@ -61,11 +61,11 @@ fun main(args: Array<String>) {
             logger.warn("The id user in the session is: $idUser")
 
             //Comment out this if block if you want to test out things without a session
-            if (idUser == null) {
+            /*if (idUser == null) {
                 logger.warn("Secured Area! Login is REQUIRED")
                 res.redirect("/")
                 halt(401)
-            }
+            }*/
         }
 
         //---------------------GET Paths-----------------
@@ -75,7 +75,7 @@ fun main(args: Array<String>) {
         get("nouserfound",{request: Request, response:Response-> UserRenderController.renderUserNotFoundView(request,response) })
         get("wrongcredentials",{request: Request, response:Response-> UserRenderController.renderWrongCredentialsView(request,response) })
         get("dashboard/",{request: Request, response: Response -> DashboardRenderController.renderDashboardView(request,response) })
-        get("scalefactors", {request:Request,response:Response -> ProjectRenderController.renderScaleFactorsView(request,response) })
+        get("scalefactors/", {request:Request,response:Response -> ProjectRenderController.renderScaleFactorsView(request,response) })
         get("userinfo/",{request:Request,response:Response -> UserRenderController.renderUserInformation(request,response)})
         get("organizations/",{request: Request, response: Response -> OrganizationRenderController.renderOraganizations(request,response) })
         get("createorganization/",{request: Request, response: Response -> OrganizationRenderController.renderCreateOrganization(request,response) })
