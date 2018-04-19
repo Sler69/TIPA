@@ -1,0 +1,16 @@
+.buttom-style{
+    background-color: darkgrey;
+    text-align: center;
+}
+
+.buttom-style-2{
+    background-color: lightgrey;
+    text-align: center;
+}
+
+.selected-btn{
+    color: white;
+    background-color: dodgerblue;//dodgerblue
+    text-align: center;
+    width:90%;
+}

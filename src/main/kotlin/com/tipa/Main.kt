@@ -9,6 +9,11 @@ import com.tipa.Util.LocalDateTimeSerializer
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.tipa.Controller.DashboardController.DashboardRenderController
+import com.tipa.Controller.Project.ProjectRenderController
+import com.tipa.Controller.UserControllers.LoginController
+import com.tipa.Controller.UserControllers.SaveUserController
+import com.tipa.Controller.UserControllers.UserRenderController
+import com.tipa.Controller.UserControllers.UserVerificationController
 import com.tipa.Controller.OrganizationControllers.OrganizationRenderController
 import com.tipa.Controller.UserControllers.*
 import com.tipa.Util.StringConstants
@@ -70,10 +75,10 @@ fun main(args: Array<String>) {
         get("nouserfound",{request: Request, response:Response-> UserRenderController.renderUserNotFoundView(request,response) })
         get("wrongcredentials",{request: Request, response:Response-> UserRenderController.renderWrongCredentialsView(request,response) })
         get("dashboard/",{request: Request, response: Response -> DashboardRenderController.renderDashboardView(request,response) })
+        get("scalefactors", {request:Request,response:Response -> ProjectRenderController.renderScaleFactorsView(request,response) })
         get("userinfo/",{request:Request,response:Response -> UserRenderController.renderUserInformation(request,response)})
         get("organizations/",{request: Request, response: Response -> OrganizationRenderController.renderOraganizations(request,response) })
         get("createorganization/",{request: Request, response: Response -> OrganizationRenderController.renderCreateOrganization(request,response) })
-
 
         //Data driven functions
         post("lol",{request: Request, response: Response -> UserVerificationController.findEmail(response,request) })
