@@ -2,11 +2,14 @@
     var scaleFactors = angular.module('scaleFactors',[]);
     scaleFactors.controller('ScaleFactorsController',['$http','$scope', function($http,$scope){
         var vm = this;
-        vm.precedentedness = 0;
-        vm.development = 0;
-        vm.architecture = 0;
-        vm.cohesion = 0;
-        vm.maturity = 0;
+        //Variables
+        vm.precedentedness = -1;
+        vm.development = -1;
+        vm.architecture = -1;
+        vm.cohesion = -1;
+        vm.maturity = -1;
+
+        vm.enabledButton =true;
 
         //Buttons class Precedents
         vm.bP1 = "";
@@ -54,6 +57,8 @@
         vm.optionArchitecture = optionArchitecture;
         vm.optionCohesion = optionCohesion;
         vm.optionMaturity = optionMaturity;
+        vm.checkInfo = checkInfo;
+
 
         function optionPrecedents(optionValue){
             console.log(vm.precedentedness);
@@ -111,22 +116,22 @@
             console.log(vm.development);
             switch (vm.development) {
                 case 5.07:
-                    vm.bD1="buttom-style";
+                    vm.bD1="buttom-style-2";
                     break;
                 case 4.05:
-                    vm.bD2="buttom-style";
+                    vm.bD2="buttom-style-2"
                     break;
                 case 3.04:
-                    vm.bD3="buttom-style";
+                    vm.bD3="buttom-style-2";
                     break;
                 case 2.03:
-                    vm.bD4="buttom-style";
+                    vm.bD4="buttom-style-2";
                     break;
                 case 1.01:
-                    vm.bD5="buttom-style";
+                    vm.bD5="buttom-style-2";
                     break;
                 case 0.0:
-                    vm.bD6="buttom-style";
+                    vm.bD6="buttom-style-2";
                     break;
             }
 
@@ -213,22 +218,22 @@
             console.log(vm.cohesion);
             switch (vm.cohesion) {
                 case 5.48:
-                    vm.bC1="buttom-style";
+                    vm.bC1="buttom-style-2";
                     break;
                 case 4.38:
-                    vm.bC2="buttom-style";
+                    vm.bC2="buttom-style-2";
                     break;
                 case 3.29:
-                    vm.bC3="buttom-style";
+                    vm.bC3="buttom-style-2";
                     break;
                 case 2.19:
-                    vm.bC4="buttom-style";
+                    vm.bC4="buttom-style-2";
                     break;
                 case 1.10:
-                    vm.bC5="buttom-style";
+                    vm.bC5="buttom-style-2";
                     break;
                 case 0.0:
-                    vm.bC6="buttom-style";
+                    vm.bC6="buttom-style-2";
                     break;
             }
 
@@ -308,6 +313,14 @@
                 case 0.0:
                     vm.bM6 = "is-info";
                     break;
+            }
+        }
+
+        function checkInfo(){
+            if (vm.precedentedness >= 0 && vm.development >= 0 && vm.architecture >= 0 && vm.cohesion >= 0 && vm.maturity >= 0){
+                vm.enabledButton = false;
+            }else{
+                vm.enabledButton = true;
             }
         }
 
