@@ -16,9 +16,18 @@
         <h1 class="title is-1" style="margin-top: 2%"> TIPA: Lista de Organizaciones</h1>
         <hr width="90%" align="right" >
     </div>
-    <div class="tile is-ancestor" style="margin-left: -1.75rem;margin-top:-1.75rem;margin-right:-1.75rem;height: 90%;width: 85%">
-        <div class="tile is-vertical is-8">
+    <div class="tile is-ancestor" style="margin-left: -1.75rem;margin-top:-1.75rem;margin-right:-1.75rem;height: 90%;width: 85%;overflow-y: scroll;overflow-x: hidden">
+        <div class="tile is-vertical ">
             <div class="tile">
+                <div class="tile is-parent is-vertical">
+                    <article class="tile is-child notification is-dark">
+                        <div class="content">
+                            <h1 class="title">Organizacion 1</h1>
+                        </div>
+                    </article>
+                </div>
+            </div>
+            <div class="tile" >
                 <div class="tile is-parent is-vertical">
                     <article class="tile is-child notification is-dark">
                         <div class="content">
