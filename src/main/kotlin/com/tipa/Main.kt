@@ -79,7 +79,7 @@ fun main(args: Array<String>) {
         get("userinfo/",{request:Request,response:Response -> UserRenderController.renderUserInformation(request,response)})
         get("organizations/",{request: Request, response: Response -> OrganizationRenderController.renderOraganizations(request,response) })
         get("createorganization/",{request: Request, response: Response -> OrganizationRenderController.renderCreateOrganization(request,response) })
-
+        get("createprojects/",{request:Request,response:Response ->ProjectRenderController.renderCreateProjectView(request,response)})
         //Data driven functions
         post("lol",{request: Request, response: Response -> UserVerificationController.findEmail(response,request) })
 

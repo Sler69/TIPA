@@ -14,10 +14,15 @@ class ProjectRenderController {
         fun renderScaleFactorsView(req:Request,resp:Response):String{
             val writer = StringWriter()
             val formTemplate = configuration.getTemplate("templates/ScaleFactors/scaleFactors.ftl")
-            val hasshecito = HashMap<String,Any>()
-            hasshecito.put("message","HOLA MARINA2!!!!!!!")
-            formTemplate.process( hasshecito, writer)
+            formTemplate.process( null, writer)
             return writer.toString();
+        }
+
+        fun renderCreateProjectView(req: Request,resp: Response):String{
+            val writer = StringWriter();
+            val formTemplate = configuration.getTemplate("templates/Projects/listProjects.ftl")
+            formTemplate.process(null,writer)
+            return writer.toString()
         }
     }
 }

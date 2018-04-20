@@ -8,13 +8,26 @@
 </head>
 <body>
     <#include "../Base/header.ftl">
-<section class="hero is-dark" style="height: 8%">
-    <div class="hero-body">
-        <div class="container">
-            <h1 class="title">
-                Crear una Nueva Organizacion
-            </h1>
+<div>
+    <img src="/images/logoCenter.png" width="10%" align=left>
+    <h1 class="title is-1" style="margin-top: 2%"> TIPA: Crear una Organizaciòn</h1>
+    <hr width="90%" align="right" >
+</div>
+<div style="width: 50%;margin-top: 5%;margin-right: auto;margin-left:auto">
+    <div class="field">
+        <label class="label">Nombre de Oraganización</label>
+        <div class="control">
+            <input class="input" type="text" placeholder="Nombre">
         </div>
     </div>
-</section>
+    <div class="field">
+        <label class="label">Nombre de Oraganización</label>
+        <div class="control">
+            <input class="input" type="text" placeholder="Nombre">
+        </div>
+    </div>
+    <div class="control" style="padding-left:35%;">
+        <button class="button is-dark">Crear Organizacion</button>
+    </div>
+</div>
 </body>

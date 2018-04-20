@@ -1,11 +1,11 @@
-<nav class="navbar is-black">
+<nav class="navbar is-dark">
   <div class="navbar-brand">
       <a class="navbar-item" href="/dashboard/">
           <img src="/images/logoCenterWhite.png" width="45" height="50">
       </a>
   </div>
 
-  <div id="navbarExampleTransparentExample" class="navbar-menu">
+  <div class="navbar-menu">
       <div class="navbar-start">
           <div class="navbar-item has-dropdown is-hoverable">
               <a class="navbar-link" >
@@ -28,7 +28,7 @@
                   <a class="navbar-item" href="">
                       Crear Proyecto
                   </a>
-                  <a class="navbar-item" href="">
+                  <a class="navbar-item" href="/createprojects/">
                       Ver Proyectos
                   </a>
               </div>
