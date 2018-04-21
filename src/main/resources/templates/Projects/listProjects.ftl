@@ -15,8 +15,8 @@
         <h1 class="title is-1" style="margin-top: 2%"> TIPA: Lista de Proyectos</h1>
         <hr width="90%" align="right" >
     </div>
-    <div style="margin-top: 5%">
-    <article class="media">
+    <div style="margin-top: 5%;width: 90%;margin-left: auto;margin-right: auto">
+    <article class="media" style="box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24)">
         <figure class="media-left">
             <p class="image is-64x64">
                 <img src="https://bulma.io/images/placeholders/128x128.png">
