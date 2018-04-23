@@ -25,10 +25,10 @@
                   Proyectos
               </a>
               <div class="navbar-dropdown is-boxed">
-                  <a class="navbar-item" href="">
+                  <a class="navbar-item" href="/createProject/">
                       Crear Proyecto
                   </a>
-                  <a class="navbar-item" href="/createprojects/">
+                  <a class="navbar-item" href="/listProjects/">
                       Ver Proyectos
                   </a>
               </div>

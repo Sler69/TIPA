@@ -18,9 +18,16 @@ class ProjectRenderController {
             return writer.toString();
         }
 
-        fun renderCreateProjectView(req: Request,resp: Response):String{
+        fun renderListProyectView(req: Request,resp: Response):String{
             val writer = StringWriter();
             val formTemplate = configuration.getTemplate("templates/Projects/listProjects.ftl")
+            formTemplate.process(null,writer)
+            return writer.toString()
+        }
+
+        fun renderCreateProyectView(req: Request,resp: Response):String{
+            val writer = StringWriter();
+            val formTemplate = configuration.getTemplate("templates/Projects/createProject.ftl")
             formTemplate.process(null,writer)
             return writer.toString()
         }

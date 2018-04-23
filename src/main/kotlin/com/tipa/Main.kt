@@ -16,6 +16,7 @@ import com.tipa.Controller.UserControllers.SaveUserController
 import com.tipa.Controller.UserControllers.UserRenderController
 import com.tipa.Controller.UserControllers.UserVerificationController
 import com.tipa.Controller.OrganizationControllers.OrganizationRenderController
+import com.tipa.Controller.Project.ProjectLogicController
 import com.tipa.Controller.UserControllers.*
 import com.tipa.Util.StringConstants
 import org.apache.log4j.BasicConfigurator
@@ -78,16 +79,20 @@ fun main(args: Array<String>) {
         get("userinfo/",{request:Request,response:Response -> UserRenderController.renderUserInformation(request,response)})
         get("organizations/",{request: Request, response: Response -> OrganizationRenderController.renderOraganizations(request,response) })
         get("createorganization/",{request: Request, response: Response -> OrganizationRenderController.renderCreateOrganization(request,response) })
-        get("createprojects/",{request:Request,response:Response ->ProjectRenderController.renderCreateProjectView(request,response)})
+        get("listProjects/",{request:Request,response:Response ->ProjectRenderController.renderListProyectView(request,response)})
+        get("/createProject/",{request: Request, response: Response -> ProjectRenderController.renderCreateProyectView(request,response) })
 
         //Data driven functions
-        post("lol",{request: Request, response: Response -> UserVerificationController.findEmail(response,request) })
+        post("/findEmail",{request: Request, response: Response -> UserVerificationController.findEmail(response,request) })
         get("/getOrganizations/",{request: Request, response: Response -> OrganizationLogicController.getOrganizations(request,response) })
+        get("/projectBasicInfo/",{request: Request, response: Response -> ProjectLogicController.getBaseProyectInfo(request,response) })
         //Logic Controllers for users
         post("saveuser", SaveUserController)
         post("login",LoginController)
         post("/saveOrganization/",{request: Request, response: Response -> OrganizationLogicController.createOrganization(request,response) })
         post("updateOrganization/",{request: Request, response: Response -> OrganizationLogicController.updateOrganization(request,response)  })
+
+
         get("logout/", LogoutController)
 
 
