@@ -75,10 +75,13 @@ fun main(args: Array<String>) {
         get("nouserfound",{request: Request, response:Response-> UserRenderController.renderUserNotFoundView(request,response) })
         get("wrongcredentials",{request: Request, response:Response-> UserRenderController.renderWrongCredentialsView(request,response) })
         get("dashboard/",{request: Request, response: Response -> DashboardRenderController.renderDashboardView(request,response) })
-        get("scalefactors", {request:Request,response:Response -> ProjectRenderController.renderScaleFactorsView(request,response) })
         get("userinfo/",{request:Request,response:Response -> UserRenderController.renderUserInformation(request,response)})
         get("organizations/",{request: Request, response: Response -> OrganizationRenderController.renderOraganizations(request,response) })
         get("createorganization/",{request: Request, response: Response -> OrganizationRenderController.renderCreateOrganization(request,response) })
+
+        get("scalefactors", {request:Request,response:Response -> ProjectRenderController.renderScaleFactorsView(request,response) })
+        get("effortmultipliers",{request: Request, response: Response -> ProjectRenderController.renderEffortMultipliers(request,response) })
+
 
         //Data driven functions
         post("lol",{request: Request, response: Response -> UserVerificationController.findEmail(response,request) })
