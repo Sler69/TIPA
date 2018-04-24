@@ -82,6 +82,10 @@ fun main(args: Array<String>) {
         get("listProjects/",{request:Request,response:Response ->ProjectRenderController.renderListProyectView(request,response)})
         get("/createProject/",{request: Request, response: Response -> ProjectRenderController.renderCreateProyectView(request,response) })
 
+        get("scalefactors", {request:Request,response:Response -> ProjectRenderController.renderScaleFactorsView(request,response) })
+        get("effortmultipliers",{request: Request, response: Response -> ProjectRenderController.renderEffortMultipliers(request,response) })
+
+
         //Data driven functions
         post("/findEmail",{request: Request, response: Response -> UserVerificationController.findEmail(response,request) })
         get("/getOrganizations/",{request: Request, response: Response -> OrganizationLogicController.getOrganizations(request,response) })

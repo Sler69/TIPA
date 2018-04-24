@@ -1,10 +1,8 @@
 package com.tipa.Controller.Project
 
 import com.tipa.configuration
-import org.omg.CORBA.Object
 import spark.Request
 import spark.Response
-import spark.Spark
 import java.io.StringWriter
 import java.util.HashMap
 
@@ -28,6 +26,13 @@ class ProjectRenderController {
         fun renderCreateProyectView(req: Request,resp: Response):String{
             val writer = StringWriter();
             val formTemplate = configuration.getTemplate("templates/Projects/createProject.ftl")
+            formTemplate.process(null,writer)
+            return writer.toString()
+        }
+
+        fun renderEffortMultipliers(req:Request,resp:Response):String{
+            val writer = StringWriter()
+            val formTemplate = configuration.getTemplate("templates/PojectValues/effortMultipliers.ftl")
             formTemplate.process(null,writer)
             return writer.toString()
         }
