@@ -21,7 +21,7 @@ object FunctionPointsDAO{
 
         val completeQuery = stringForQuery.toString()
 
-        return Database.Builder()
+        val info = Database.Builder()
                 .statement(completeQuery)
                 .preparable { statement ->
                     for (i in 0 until functionPointsNames.size){
@@ -37,5 +37,7 @@ object FunctionPointsDAO{
                         | Error: $error
                     """.trimMargin())
                 }.execute()
+
+        return info;
     }
 }

@@ -56,7 +56,7 @@ class ProjectLogicController{
                 namesFunctionPnts.add(name)
             }
 
-            val insertFunctionPntStatus = FunctionPointsDAO.inserFunctionPoints(uuidForProject,namesFunctionPnts) ==1
+            val insertFunctionPntStatus = FunctionPointsDAO.inserFunctionPoints(uuidForProject,namesFunctionPnts) != 0
 
             val model = HashMap<String,Any>()
 
