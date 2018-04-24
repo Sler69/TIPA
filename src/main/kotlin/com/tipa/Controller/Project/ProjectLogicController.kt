@@ -68,5 +68,15 @@ class ProjectLogicController{
 
             return response.prepare(200,model)
         }
+
+        fun getProjectsForUser(request:Request,response: Response):Any{
+            val model = HashMap<String,Any>()
+
+            val idUser =UserSessionInfo.getIdUserSession(request)
+            val projects = ProjectDAO.getProjectsByUserId(idUser)
+            model.put("projects",projects)
+
+            return response.prepare(200,model)
+        }
     }
 }

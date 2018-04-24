@@ -4,31 +4,31 @@
     createOrgannization.factory('Organization',[function () {
         var Organization = function () {
 
-        }
+        };
 
         Organization.prototype.setName= function (name) {
             this.name = name;
-        }
+        };
 
         Organization.prototype.getName = function(){
             return this.name;
-        }
+        };
         
         Organization.prototype.setId = function (id) {
             this.id = id;
-        }
+        };
         
         Organization.prototype.getId = function () {
             return this.id;
-        }
+        };
 
         Organization.prototype.setSelectedClass = function (classSelected) {
             this.classSelected = classSelected;
-        }
+        };
 
         Organization.prototype.getSelectedClass = function () {
             return this.classSelected;
-        }
+        };
         return Organization;
     }]);
 

@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="/css/icons/icons.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="/javascript/angular/angular.min.js"></script>
+    <script src="/javascript/controller/ListProjectController.js"></script>
 </head>
 <body>
 <div>
@@ -15,34 +16,25 @@
         <h1 class="title is-1" style="margin-top: 2%"> TIPA: Lista de Proyectos</h1>
         <hr width="90%" align="right" >
     </div>
-    <div style="margin-top: 5%;width: 90%;margin-left: auto;margin-right: auto">
-    <article class="media" style="box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24)">
-        <figure class="media-left">
-            <p class="image is-64x64">
-                <img src="https://bulma.io/images/placeholders/128x128.png">
+    <div ng-app="listProjects" ng-controller="ListProjectController as lstProjectCont" style="margin-top: 5%;width: 90%;margin-left: auto;margin-right: auto">
+    <article class="media" style="box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);border: 1px solid #209cee" ng-repeat="project in lstProjectCont.listProjectsInfo">
+        <figure class="media-left" >
+            <p class="title">
+                0%
             </p>
         </figure>
-        <div class="media-content">
+        <div class="media-content is-info">
             <div class="content">
                 <p>
-                    <strong>Nombre de Proyecto:</strong> <small>myOmny</small>
+                    <strong>Nombre de Proyecto: </strong> <small>{{project.getProjectName()}}</small>
                     <br>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.
+                    <strong>Organizacion: </strong> <small>{{project.getNameOrganization()}}</small>
+                    <br>
+                    <strong>Fecha de Inicio: </strong> {{project.getDateProject()}}<small></small>
+                    <br>
+                    <strong>Precio por hora: </strong>$ {{project.getPriceProject()}}<small></small>
                 </p>
             </div>
-            <nav class="level is-mobile">
-                <div class="level-left">
-                    <a class="level-item">
-                        <span class="icon is-small"><i class="fas fa-reply"></i></span>
-                    </a>
-                    <a class="level-item">
-                        <span class="icon is-small"><i class="fas fa-retweet"></i></span>
-                    </a>
-                    <a class="level-item">
-                        <span class="icon is-small"><i class="fas fa-heart"></i></span>
-                    </a>
-                </div>
-            </nav>
         </div>
         <div class="media-right">
             <button class="delete"></button>
