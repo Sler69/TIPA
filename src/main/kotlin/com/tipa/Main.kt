@@ -91,7 +91,7 @@ fun main(args: Array<String>) {
         post("login",LoginController)
         post("/saveOrganization/",{request: Request, response: Response -> OrganizationLogicController.createOrganization(request,response) })
         post("updateOrganization/",{request: Request, response: Response -> OrganizationLogicController.updateOrganization(request,response)  })
-
+        post("/createProject/",{request: Request, response: Response -> ProjectLogicController.saveProject(request,response) })
 
         get("logout/", LogoutController)
 

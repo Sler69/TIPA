@@ -113,12 +113,17 @@
         vm.selectedLanguageId = "";
         vm.nameProyect = "";
 
+        vm.errorModalClass = "";
+        vm.successModalClass = "";
+
         vm.disableButton = true;
 
         vm.addFunctionPoint = addFunctionPoint;
         vm.removeFunctionPoint = removeFunctionPoint;
         vm.addProyect = addProyect;
         vm.checkInformation = checkInformation;
+        vm.closeErrorModal = closeErrorModal;
+        vm.closeSuccessModal = closeSuccessModal;
 
         $http.get('/projectBasicInfo/')
             .then(function successCallback(response) {
@@ -145,13 +150,43 @@
         function addProyect(){
 
             var nombreProyecto = vm.nameProyect;
-            var dateProyect = vm.startingDate.getTime();
-            var languaje = parseInt(vm.selectedLanguageId);
+            var dateProject = vm.startingDate.getTime();
+            var language = parseInt(vm.selectedLanguageId);
             var model = parseInt(vm.selectedModelId);
             var organization = parseInt(vm.selectedOrganizationId);
             var price = vm.pricePerHour;
             var functionPn = vm.lstFunctionPoints;
-            debugger
+
+            var data = {
+                "projectName":nombreProyecto,
+                "dateProject":dateProject,
+                "languageProject":language,
+                "modelProject":model,
+                "organizationProject":organization,
+                "priceProject":price,
+                "functionPntsProject":functionPn
+            }
+
+            $http.post('/createProject/',data)
+                .then(function successCallback(response) {
+                    var info = response.data.insertStatus;
+                    if(info){
+                        vm.successModalClass = "is-active";
+                        resetViewForNewProject();
+                    }else{
+                        vm.errorModalClass = "is-active"
+                    }
+                },function errorCallback() {
+                   ;
+                });
+        }
+
+        function  closeSuccessModal(){
+            vm.successModalClass = "";
+        }
+
+        function closeErrorModal(){
+            vm.errorModalClass = "";
         }
 
         function addFunctionPoint(){
@@ -171,6 +206,15 @@
                 fnPoint.setId(fnPointNewIndex)
             }
             console.log(vm.lstFunctionPoints)
+        }
+
+        function resetViewForNewProject (){
+            vm.lstFunctionPoints = [];
+            vm.pricePerHour = 0;
+            vm.selectedOrganizationId = "";
+            vm.selectedModelId = "";
+            vm.selectedLanguageId = "";
+            vm.nameProyect = "";
         }
 
         function cleanLstOrganizations(rawOrganizations){

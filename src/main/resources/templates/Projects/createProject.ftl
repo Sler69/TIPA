@@ -32,8 +32,8 @@
     </div>
     <div class="field">
         <label class="label">Organizacion asociada al proyecto</label>
-        <div class="select ">
-            <select ng-model="crtProject.selectedOrganizationId" ng-change="crtProject.checkInformation()">
+        <div class="select " >
+            <select ng-model="crtProject.selectedOrganizationId" ng-change="crtProject.checkInformation()" >
                 <option ng-repeat="organization in crtProject.lstOrganizations" value="{{organization.getId()}}">{{organization.getName()}}</option>
             </select>
         </div>
@@ -41,7 +41,7 @@
     <div class="field">
         <label class="label">Seleccionar Lenguaje</label>
             <div class="control">
-                <div class="select is-info">
+                <div class="select is-info"  >
                     <select ng-model="crtProject.selectedLanguageId" ng-change="crtProject.checkInformation()" >
                         <option ng-repeat="language in crtProject.lstLanguages" value="{{language.getId()}}">{{language.getName()}}</option>
                     </select>
@@ -52,7 +52,7 @@
         <label class="label">Seleccionar Modelo</label>
         <div class="control">
             <div class="select is-primary">
-                <select ng-model="crtProject.selectedModelId" ng-change="crtProject.checkInformation()">
+                <select ng-model="crtProject.selectedModelId" ng-change="crtProject.checkInformation()" >
                     <option ng-repeat="model in crtProject.lstModels" value="{{model.getId()}}">{{model.getName()}}</option>
                 </select>
             </div>
@@ -93,5 +93,37 @@
         <button class="button is-dark" ng-click="crtProject.addProyect()" ng-disabled="crtProject.disableButton" style="width: 70%" >Crear Proyecto</button>
     </div>
 
+
+    <div class="modal has-text-centered has-addons-centered" ng-class="crtProject.successModalClass">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Proyecto</p>
+                <button class="delete" aria-label="close" ng-click="crtProject.closeSuccessModal()"></button>
+            </header>
+            <section class="modal-card-body">
+                <p class=" has-text-centered">Se guardo el proyecto de forma exitosa</p>
+            </section>
+            <footer class="modal-card-foot has-text-centered" style="margin-top: 2%">
+                <a class="button is-success  is-centered" style="margin-left: auto; margin-right: auto" ng-click="crtProject.closeSuccessModal()">Ok</a>
+            </footer>
+        </div>
+    </div>
+
+    <div class="modal" ng-class="crtProject.errorModalClass">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head ">
+                <p class="modal-card-title">Error:No se guardo el proyecto de forma exitosa</p>
+                <button class="delete" aria-label="close" ng-click="crtProject.closeErrorModal()"></button>
+            </header>
+            <section class="modal-card-body">
+                <p class="is-danger has-text-centered">Hubo un error en el sistema por favor tratar mas tarde</p>
+            </section>
+            <footer class="modal-card-foot">
+                <button class="button is-danger" style="margin-left: auto; margin-right: auto" ng-click="crtProject.closeErrorModal()">Cancelar</button>
+            </footer>
+        </div>
+    </div>
 </div>
 </body>
