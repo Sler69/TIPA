@@ -9,12 +9,14 @@ import com.tipa.Util.LocalDateTimeSerializer
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.tipa.Controller.DashboardController.DashboardRenderController
+import com.tipa.Controller.OrganizationControllers.OrganizationLogicController
 import com.tipa.Controller.Project.ProjectRenderController
 import com.tipa.Controller.UserControllers.LoginController
 import com.tipa.Controller.UserControllers.SaveUserController
 import com.tipa.Controller.UserControllers.UserRenderController
 import com.tipa.Controller.UserControllers.UserVerificationController
 import com.tipa.Controller.OrganizationControllers.OrganizationRenderController
+import com.tipa.Controller.Project.ProjectLogicController
 import com.tipa.Controller.UserControllers.*
 import com.tipa.Util.StringConstants
 import org.apache.log4j.BasicConfigurator
@@ -57,11 +59,9 @@ fun main(args: Array<String>) {
 
         //------------Check Session------------------
         before("/*/") { req, res ->
-            val idUser = req.session().attribute<String>(StringConstants.ID);
-            logger.warn("The id user in the session is: $idUser")
+            val idUser = req.session().attribute<String>(StringConstants.ID)
 
-            //Comment out this if block if you want to test out things without a session
-            if (idUser == null) {
+             if(idUser == null) {
                 logger.warn("Secured Area! Login is REQUIRED")
                 res.redirect("/")
                 halt(401)
@@ -75,72 +75,32 @@ fun main(args: Array<String>) {
         get("nouserfound",{request: Request, response:Response-> UserRenderController.renderUserNotFoundView(request,response) })
         get("wrongcredentials",{request: Request, response:Response-> UserRenderController.renderWrongCredentialsView(request,response) })
         get("dashboard/",{request: Request, response: Response -> DashboardRenderController.renderDashboardView(request,response) })
+        get("scalefactors/", {request:Request,response:Response -> ProjectRenderController.renderScaleFactorsView(request,response) })
         get("userinfo/",{request:Request,response:Response -> UserRenderController.renderUserInformation(request,response)})
         get("organizations/",{request: Request, response: Response -> OrganizationRenderController.renderOraganizations(request,response) })
         get("createorganization/",{request: Request, response: Response -> OrganizationRenderController.renderCreateOrganization(request,response) })
+        get("listProjects/",{request:Request,response:Response ->ProjectRenderController.renderListProyectView(request,response)})
+        get("/createProject/",{request: Request, response: Response -> ProjectRenderController.renderCreateProyectView(request,response) })
 
         get("scalefactors", {request:Request,response:Response -> ProjectRenderController.renderScaleFactorsView(request,response) })
         get("effortmultipliers",{request: Request, response: Response -> ProjectRenderController.renderEffortMultipliers(request,response) })
 
 
         //Data driven functions
-        post("lol",{request: Request, response: Response -> UserVerificationController.findEmail(response,request) })
-
+        post("/findEmail",{request: Request, response: Response -> UserVerificationController.findEmail(response,request) })
+        get("/getOrganizations/",{request: Request, response: Response -> OrganizationLogicController.getOrganizations(request,response) })
+        get("/projectBasicInfo/",{request: Request, response: Response -> ProjectLogicController.getBaseProyectInfo(request,response) })
         //Logic Controllers for users
         post("saveuser", SaveUserController)
         post("login",LoginController)
+        post("/saveOrganization/",{request: Request, response: Response -> OrganizationLogicController.createOrganization(request,response) })
+        post("updateOrganization/",{request: Request, response: Response -> OrganizationLogicController.updateOrganization(request,response)  })
+        post("/createProject/",{request: Request, response: Response -> ProjectLogicController.saveProject(request,response) })
+
         get("logout/", LogoutController)
 
-        //Tryout PATHS!!
-        get("/hellodevs", { _, _ ->
-            val writer = StringWriter()
-            try {
-                val formTemplate = configuration.getTemplate("templates/Example/hello.ftl")
-                val map = HashMap<String, Any>()
-                map.put("message","Hello DEVS")
-                formTemplate.process(map, writer)
-            } catch (e: Exception) {
-                Spark.halt(500)
-            }
-            writer
-        })
 
-        get("duda") { request, response ->
-            val writer = StringWriter()
-            try {
-                val formTemplate = configuration.getTemplate("templates/Example/form.ftl")
-
-                formTemplate.process(null, writer)
-            } catch (e: Exception) {
-                Spark.halt(500)
-            }
-            writer
-        }
-
-        post("sait") { request, response ->
-            val writer = StringWriter()
-            if(false) {
-                try {
-                    val name = if (request.queryParams("name") != null) request.queryParams("name") else "anonymous"
-                    val email = if (request.queryParams("email") != null) request.queryParams("email") else "unknown"
-
-                    val resultTemplate = configuration.getTemplate("templates/Example/result.ftl")
-
-                    val map = HashMap<String, Any>()
-                    map["name"] = name
-                    map["email"] = email
-
-                    resultTemplate.process(map, writer)
-                } catch (e: Exception) {
-                    Spark.halt(500)
-                }
-
-                writer
-            }else{
-                response.redirect("login",404);
-            }
-        }
-
+        //Example of Jsons
         post("jsonEX", ExampleJSON)
         get("ftlEX", ExampleFTL)
         get("ftlJVEX", ExampleFTLJV.INSTANCE)

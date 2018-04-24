@@ -11,11 +11,23 @@ class ProjectRenderController {
 
         fun renderScaleFactorsView(req:Request,resp:Response):String{
             val writer = StringWriter()
-            val formTemplate = configuration.getTemplate("templates/PojectValues/scaleFactors.ftl")
-            val hasshecito = HashMap<String,Any>()
-            hasshecito.put("message","HOLA MARINA2!!!!!!!")
-            formTemplate.process( hasshecito, writer)
+            val formTemplate = configuration.getTemplate("templates/ScaleFactors/scaleFactors.ftl")
+            formTemplate.process( null, writer)
             return writer.toString();
+        }
+
+        fun renderListProyectView(req: Request,resp: Response):String{
+            val writer = StringWriter();
+            val formTemplate = configuration.getTemplate("templates/Projects/listProjects.ftl")
+            formTemplate.process(null,writer)
+            return writer.toString()
+        }
+
+        fun renderCreateProyectView(req: Request,resp: Response):String{
+            val writer = StringWriter();
+            val formTemplate = configuration.getTemplate("templates/Projects/createProject.ftl")
+            formTemplate.process(null,writer)
+            return writer.toString()
         }
 
         fun renderEffortMultipliers(req:Request,resp:Response):String{

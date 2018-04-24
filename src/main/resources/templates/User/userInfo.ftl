@@ -10,20 +10,17 @@
 <body>
 <div>
     <#include "../Base/header.ftl">
-    </br>
-    <section class="hero is-dark">
-        <div class="hero-body">
-            <div class="container">
-                <h1 class="title">
-                    Bienvenido Usuario!
-                </h1>
-                <h2 class="subtitle">
-                    Username
-                </h2>
-            </div>
-        </div>
-    </section>
-    <div class="card-form">
+    <div>
+        <img src="/images/logoCenter.png" width="10%" align=left>
+        <h1 class="title is-1" style="margin-top: 2%"> TIPA: Bienvenido</h1>
+        <hr width="90%" align="right" >
+    </div>
+    <div class="content" style="width: 50%;margin-left: 2%">
+        <h1>Su Información</h1>
+        <p>En esta seccion encontrara su informacion personal. Tambien puede actualizarla pero tome en cuenta que los campos de usuario
+        y mail se tienen que verificar la disponibilidad de estos.</p>
+    </div>
+    <div class="card-form" style="width:75%;">
         <div class="card-content">
             <div class="field">
                 <label class="label">Nombre</label>

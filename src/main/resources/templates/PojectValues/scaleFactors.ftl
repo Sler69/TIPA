@@ -1,17 +1,17 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="css/bulma/bulma.css">
-    <link rel="stylesheet" href="css/ProjectValues/buttons.css">
+    <link rel="stylesheet" href="/css/bulma/bulma.css">
+    <link rel="stylesheet" href="/css/Tables/buttons.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="javascript/angular/angular.min.js"></script>
-    <script src="javascript/controller/ScaleFactorsController.js"></script>
+    <script src="/javascript/angular/angular.min.js"></script>
+    <script src="/javascript/controller/ScaleFactorsController.js"></script>
 
 </head>
 <body>
-
+<#include "../Base/header.ftl">
 <div>
-    <img src="images/logoCenter.png" width="10%" align=left>
+    <img src="/images/logoCenter.png" width="10%" align=left>
     <h1 class="title is-1"> TIPA </h1>
     <hr width="90%" align="right" >
 </div>
