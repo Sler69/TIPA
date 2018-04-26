@@ -1,17 +1,17 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="css/bulma/bulma.css">
-    <link rel="stylesheet" href="css/ProjectValues/buttons.css">
+    <link rel="stylesheet" href="/css/bulma/bulma.css">
+    <link rel="stylesheet" href="/css/ProjectValues/buttons.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="javascript/angular/angular.min.js"></script>
-    <script src="javascript/controller/EffortMultipliers.js"></script>
+    <script src="/javascript/angular/angular.min.js"></script>
+    <script src="/javascript/controller/EffortMultipliers.js"></script>
 
 </head>
 <body>
-
+<#include "../Base/header.ftl">
 <div>
-    <img src="images/logoCenter.png" width="10%" align=left>
+    <img src="/images/logoCenter.png" width="10%" align=left>
     <h1 class="title is-1"> TIPA </h1>
     <hr width="90%" align="right" >
 </div>
@@ -272,11 +272,41 @@
     </table>
 
     <div >
-        <a class="button is-medium " style="margin-left: 50%" ng-disabled="em.enabledButton"> Save </a>
+        <a class="button is-medium " style="margin-left: 50%" ng-disabled="em.enabledButton" ng-click="em.uploadMultipliers()"> Save </a>
         <a class="button is-medium " style="margin-left: 90%" > Next </a>
     </div>
 
+    <div class="modal has-text-centered has-addons-centered" ng-class="em.successModalClass">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Multiplicadores</p>
+                <button class="delete" aria-label="close" ng-click="em.closeSuccessModal()"></button>
+            </header>
+            <section class="modal-card-body">
+                <p class=" has-text-centered">Se guardaron existosamento los multiplicadores</p>
+            </section>
+            <footer class="modal-card-foot has-text-centered" style="margin-top: 2%">
+                <a class="button is-success  is-centered" style="margin-left: auto; margin-right: auto" href="/organizations/">Ir a la pagina de organizaciones</a>
+            </footer>
+        </div>
+    </div>
 
+    <div class="modal" ng-class="em.errorModalClass">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head ">
+                <p class="modal-card-title">Error en el Sistema :No se guardaron los multiplicadores</p>
+                <button class="delete" aria-label="close" ng-click="em.closeErrorModal()"></button>
+            </header>
+            <section class="modal-card-body">
+                <p class="is-danger has-text-centered">Hubo un error en el sistema por favor tratar mas tarde</p>
+            </section>
+            <footer class="modal-card-foot">
+                <button class="button is-danger" style="margin-left: auto; margin-right: auto" ng-click="em.closeErrorModal()">Cancelar</button>
+            </footer>
+        </div>
+    </div>
 
 </div>
 

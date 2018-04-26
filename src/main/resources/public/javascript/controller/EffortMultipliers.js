@@ -21,7 +21,12 @@
         vm.multisiteDev  =-1;
         vm.schedule =-1;
 
-        vm.last=-1
+        vm.successModalClass = "";
+        vm.errorModalClass = "";
+
+        vm.idProject = "";
+
+        vm.last=-1;
         vm.enabledButton =true;
 
         //Buttons class softwareReliability
@@ -162,8 +167,11 @@
         vm.optionMultisiteDev = optionMultisiteDev;
         vm.optionSchedule = optionSchedule;
         vm.checkInfo = checkInfo;
+        vm.uploadMultipliers = uploadMultipliers;
+        vm.closeSuccessModal = closeSuccessModal;
+        vm.closeErrorModal = closeErrorModal;
 
-
+        getIdProject();
 
         function optionSoftwareReliability(optionValue){
             console.log(vm.softwareReliability);
@@ -960,6 +968,57 @@
                 vm.enabledButton = true;
             }
         }
+        
+        function uploadMultipliers() {
 
+            var data = {
+                "softwareReliability":vm.softwareReliability,
+                "dataCost":vm.dataCost,
+                "complexity":vm.complexity,
+                "reusability":vm.reusability,
+                "documentation":vm.documentation,
+                "execution":vm.execution,
+                "storage":vm.storage,
+                "volatility": vm.volatility,
+                "analyst" : vm.analyst,
+                "programmer" : vm.programmer,
+                "continuity" : vm.continuity,
+                "applicationExp" : vm.applicationExp,
+                "platformExp":vm.platformExp,
+                "languageExp":vm.languageExp,
+                "useSoftware":vm.useSoftware,
+                "multisiteDev":vm.multisiteDev,
+                "schedule":vm.schedule,
+                "projectId":vm.projectId
+            }
+
+            $http.post('/saveEffortMultipliers/',data)
+                .then(function successCallback(response) {
+                    var info = response.data.statusInsert;
+                    if(info){
+                        vm.successModalClass = "is-active";
+                    }else{
+                        vm.errorModalClass = "is-active";
+                    }
+                },function errorCallback() {
+                    vm.errorModalClass = "is-active";
+                });
+
+        }
+
+        function getIdProject (){
+            var information =  window.location.href
+            var id = information.substr(information.lastIndexOf('/') + 1);
+            vm.projectId = id;
+        }
+
+
+        function closeSuccessModal(){
+            vm.successModalClass = "";
+        }
+
+        function closeErrorModal(){
+            vm.errorModalClass = "";
+        }
     }]);
 })(angular);

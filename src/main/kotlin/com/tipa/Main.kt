@@ -68,6 +68,17 @@ fun main(args: Array<String>) {
             }
         }
 
+        before("/*/*"){
+            req, res ->
+            val idUser = req.session().attribute<String>(StringConstants.ID)
+
+            if(idUser == null) {
+                logger.warn("Secured Area! Login is REQUIRED")
+                res.redirect("/")
+                halt(401)
+            }
+        }
+
         //---------------------GET Paths-----------------
         //RenderViews
         get("/", { request:Request,response:Response -> UserRenderController.renderLoginUserView(request,response)})
@@ -75,15 +86,12 @@ fun main(args: Array<String>) {
         get("nouserfound",{request: Request, response:Response-> UserRenderController.renderUserNotFoundView(request,response) })
         get("wrongcredentials",{request: Request, response:Response-> UserRenderController.renderWrongCredentialsView(request,response) })
         get("dashboard/",{request: Request, response: Response -> DashboardRenderController.renderDashboardView(request,response) })
-        get("scalefactors/", {request:Request,response:Response -> ProjectRenderController.renderScaleFactorsView(request,response) })
         get("userinfo/",{request:Request,response:Response -> UserRenderController.renderUserInformation(request,response)})
         get("organizations/",{request: Request, response: Response -> OrganizationRenderController.renderOraganizations(request,response) })
         get("createorganization/",{request: Request, response: Response -> OrganizationRenderController.renderCreateOrganization(request,response) })
         get("listProjects/",{request:Request,response:Response ->ProjectRenderController.renderListProyectView(request,response)})
         get("/createProject/",{request: Request, response: Response -> ProjectRenderController.renderCreateProyectView(request,response) })
 
-        get("scalefactors", {request:Request,response:Response -> ProjectRenderController.renderScaleFactorsView(request,response) })
-        get("effortmultipliers",{request: Request, response: Response -> ProjectRenderController.renderEffortMultipliers(request,response) })
 
         get("getLstProjects/",{request: Request, response: Response ->  ProjectLogicController.getProjectsForUser(request,response)})
         
@@ -91,12 +99,17 @@ fun main(args: Array<String>) {
         post("/findEmail",{request: Request, response: Response -> UserVerificationController.findEmail(response,request) })
         get("/getOrganizations/",{request: Request, response: Response -> OrganizationLogicController.getOrganizations(request,response) })
         get("/projectBasicInfo/",{request: Request, response: Response -> ProjectLogicController.getBaseProyectInfo(request,response) })
+        get("/scaleFactors/:id",{request: Request, response: Response -> ProjectRenderController.renderScaleFactors(request,response) })
+        get("/effortMultipliers/:id",{request: Request, response: Response -> ProjectRenderController.renderEffortMultipliers(request,response) })
+
         //Logic Controllers for users
         post("saveuser", SaveUserController)
         post("login",LoginController)
         post("/saveOrganization/",{request: Request, response: Response -> OrganizationLogicController.createOrganization(request,response) })
         post("updateOrganization/",{request: Request, response: Response -> OrganizationLogicController.updateOrganization(request,response)  })
         post("/createProject/",{request: Request, response: Response -> ProjectLogicController.saveProject(request,response) })
+        post("/saveEffortMultipliers/",{request: Request, response: Response -> ProjectLogicController.saveEfforMultipliers(request,response)  })
+        post("/saveScaleFactors/",{request: Request, response: Response ->  ProjectLogicController.saveScaleFactors(request,response)})
 
         get("logout/", LogoutController)
 

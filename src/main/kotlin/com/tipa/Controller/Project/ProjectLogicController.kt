@@ -4,6 +4,7 @@ import com.google.gson.Gson
 import com.google.gson.JsonParser
 import com.tipa.Controller.UserControllers.UserSessionInfo
 import com.tipa.Dao.*
+import com.tipa.Util.bodyAs
 import com.tipa.Util.prepare
 import spark.Request
 import spark.Response
@@ -78,5 +79,55 @@ class ProjectLogicController{
 
             return response.prepare(200,model)
         }
+
+        fun saveScaleFactors(req:Request,resp:Response):Any{
+            val scaleFactor = req.bodyAs(ScaleFactors::class.java)
+            val model = HashMap<String,Any>()
+            val insertStatus = ScaleFactorsDAO.saveScaleFactors(scaleFactor) ==1
+            model.put("insertStatus",insertStatus)
+            return resp.prepare(200,model)
+
+        }
+
+        fun saveEfforMultipliers(req: Request,resp: Response):Any{
+            val effortMultipliers= req.bodyAs(EffortMultipliers::class.java)
+            val model = HashMap<String,Any>()
+
+            val insertStatus = EffortMultipliersDAO.saveEffortMultipliers(effortMultipliers) == 1
+            model.put("insertStatus",insertStatus)
+            return resp.prepare(200,model)
+
+        }
+
     }
 }
+
+data class ScaleFactors(
+    val precedentedness:Float = 0.0F,
+    val development:Float = 0.0F,
+    val architecture:Float = 0.0F,
+    val cohesion:Float = 0.0F ,
+    val maturity:Float = 0.0F,
+    val projectId:String = ""
+)
+
+data class EffortMultipliers(
+        val softwareReliability:Float = 0.0F,
+        val dataCost:Float = 0.0F,
+        val complexity:Float = 0.0F,
+        val reusability:Float = 0.0F,
+        val documentation:Float = 0.0F,
+        val execution:Float = 0.0F,
+        val storage:Float = 0.0F,
+        val volatility:Float = 0.0F,
+        val analyst:Float = 0.0F,
+        val programmer:Float = 0.0F,
+        val continuity:Float = 0.0F,
+        val applicationExp:Float = 0.0F,
+        val platformExp:Float = 0.0F,
+        val languageExp:Float = 0.0F,
+        val useSoftware:Float = 0.0F,
+        val multisiteDev:Float = 0.0F,
+        val schedule:Float = 0.0F,
+        val projectId:String = ""
+)

@@ -2,8 +2,8 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="/css/bulma/bulma.css">
-    <link rel="stylesheet" href="/css/icons/icons.css">
+    <link rel="stylesheet" href="/css/bulma/bulma.css">>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="/javascript/angular/angular.min.js"></script>
     <script src="/javascript/controller/ListProjectController.js"></script>
@@ -36,8 +36,33 @@
                 </p>
             </div>
         </div>
-        <div class="media-right">
-            <button class="delete"></button>
+        <div class="media-right columns">
+                <div class="column">
+                    <a class="button is-dark is-small" href="/calculateFunPnts/{{project.getIdProject()}}" >
+                        <span class="icon is-small ">
+                            <i class="fas fa-plus"></i>
+                        </span>
+                        <span>Puntos funcion</span>
+                    </a>
+                    <a class="button is-dark is-small" href="/effortMultipliers/{{project.getIdProject()}}">
+                        <span class="icon is-small">
+                            <i class="fas fa-plus"></i>
+                        </span>
+                        <span>Multiplicadores de Ezfuerzo</span>
+                    </a>
+                    <a class="button is-dark is-small" href="/scaleFactors/{{project.getIdProject()}}">
+                        <span class="icon is-small">
+                            <i class="fas fa-plus"></i>
+                        </span>
+                        <span>Scale factors</span>
+                    </a>
+                    <a class="button is-dark is-small" href="/estimateProject/{{project.getIdProject()}}">
+                        <span class="icon is-small">
+                            <i class="fas fa-plus"></i>
+                        </span>
+                        <span>Estimacion</span>
+                    </a>
+                </div>
         </div>
     </article>
     </div>

@@ -9,12 +9,6 @@ import java.util.HashMap
 class ProjectRenderController {
     companion object {
 
-        fun renderScaleFactorsView(req:Request,resp:Response):String{
-            val writer = StringWriter()
-            val formTemplate = configuration.getTemplate("templates/ScaleFactors/scaleFactors.ftl")
-            formTemplate.process( null, writer)
-            return writer.toString();
-        }
 
         fun renderListProyectView(req: Request,resp: Response):String{
             val writer = StringWriter();
@@ -30,9 +24,21 @@ class ProjectRenderController {
             return writer.toString()
         }
 
-        fun renderEffortMultipliers(req:Request,resp:Response):String{
+
+
+        fun renderEffortMultipliers(req: Request,resp: Response):String{
+            val info = req.params(":id")
             val writer = StringWriter()
             val formTemplate = configuration.getTemplate("templates/PojectValues/effortMultipliers.ftl")
+            val model = HashMap<String,Any>()
+            model.put("projectId",info);
+            formTemplate.process(model,writer)
+            return writer.toString()
+        }
+
+        fun renderScaleFactors(req: Request,resp: Response):String{
+            val writer = StringWriter()
+            val formTemplate = configuration.getTemplate("templates/PojectValues/scaleFactors.ftl")
             formTemplate.process(null,writer)
             return writer.toString()
         }

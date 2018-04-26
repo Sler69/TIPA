@@ -34,7 +34,7 @@ object FunctionPointsDAO{
                 }
                 .onError{error ->
                     logger.error("""There wasa an error on inserting a project with id: ${idProject.toString()} and organization id:
-                        | Error: $error
+                        | Error: ${error.printStackTrace()}
                     """.trimMargin())
                 }.execute()
 

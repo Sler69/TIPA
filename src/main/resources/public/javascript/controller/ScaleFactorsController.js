@@ -8,6 +8,10 @@
         vm.architecture = -1;
         vm.cohesion = -1;
         vm.maturity = -1;
+        vm.successModalClass = "";
+        vm.errorModalClass = "";
+
+        vm.projectId = "";
 
         vm.enabledButton =true;
 
@@ -58,10 +62,13 @@
         vm.optionCohesion = optionCohesion;
         vm.optionMaturity = optionMaturity;
         vm.checkInfo = checkInfo;
+        vm.uploadScaleFactors = uploadScaleFactors;
+        vm.closeSuccessModal = closeSuccessModal;
+        vm.closeErrorModal = closeErrorModal;
 
+        getIdProject()
 
         function optionPrecedents(optionValue){
-            console.log(vm.precedentedness);
             switch (vm.precedentedness) {
                 case 6.20:
                     vm.bP1="buttom-style";
@@ -113,7 +120,6 @@
         }
 
         function optionDevelopment(optionValue){
-            console.log(vm.development);
             switch (vm.development) {
                 case 5.07:
                     vm.bD1="buttom-style-2";
@@ -164,7 +170,6 @@
         }
 
         function optionArchitecture(optionValue){
-            console.log(vm.architecture);
             switch (vm.architecture) {
                 case 7.07:
                     vm.bA1="buttom-style";
@@ -215,7 +220,6 @@
         }
 
         function optionCohesion(optionValue){
-            console.log(vm.cohesion);
             switch (vm.cohesion) {
                 case 5.48:
                     vm.bC1="buttom-style-2";
@@ -322,6 +326,42 @@
             }else{
                 vm.enabledButton = true;
             }
+        }
+
+        function uploadScaleFactors(){
+            var data = {
+                "precedentedness":vm.precedentedness,
+                "development":vm.development,
+                "architecture":vm.architecture,
+                "cohesion":vm.cohesion,
+                "maturity":vm.maturity,
+                "projectId":vm.projectId
+            }
+            $http.post('/saveScaleFactors/',data)
+                .then(function successCallback(response) {
+                    var info = response.data.statusInsert;
+                    if(info){
+                        vm.successModalClass = "is-active";
+                    }else{
+                        vm.errorModalClass = "is-active";
+                    }
+                },function errorCallback() {
+                    vm.errorModalClass = "is-active";
+                });
+        }
+
+        function getIdProject (){
+            var information =  window.location.href
+            var id = information.substr(information.lastIndexOf('/') + 1);
+            vm.projectId = id;
+        }
+
+        function closeSuccessModal(){
+            vm.successModalClass = "";
+        }
+
+        function closeErrorModal(){
+            vm.errorModalClass = "";
         }
 
     }]);

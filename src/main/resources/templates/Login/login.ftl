@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/bulma/bulma.css">
-    <link rel="stylesheet" href="css/icons/icons.css">
     <link rel="stylesheet" href="css/users/login.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
     <script src="javascript/angular/angular.min.js"></script>
     <script src="javascript/controller/LoginController.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -34,9 +34,7 @@
                         <p class="control has-icons-left ">
                             <input name="usernameTIPA" name="usernameTIPA" class="input" type="text" placeholder="Email" >
                             <span class="icon is-small is-left">
-                                <svg class="icon-avatar field-icon" >
-
-                                </svg>
+                                <i class="fas fa-user"></i>
                             </span>
                         </p>
                     </div>
@@ -44,7 +42,7 @@
                         <p class="control has-icons-left">
                             <input name="passwordTIPA" id="passwordTIPA" class="input" type="password" placeholder="Password">
                             <span class="icon is-small is-left">
-                                <i class="icon-cancel field-icon"></i>
+                                <i class="fas fa-lock"></i>
                             </span>
                         </p>
                     </div>
