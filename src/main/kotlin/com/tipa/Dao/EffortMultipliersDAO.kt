@@ -5,11 +5,6 @@ import com.tipa.Controller.Project.EffortMultipliers
 import java.sql.*
 import java.util.*
 
-private val DB_DRIVER = "com.microsoft.sqlserver.jdbc.SQLServerDriver"
-private val DB_USER = "danielsadac@estimator-k"
-private val DB_PASSWORD = "Yzy@WJfAh4fmiWpV"
-private val DB = "estimator"
-
 
 object EffortMultipliersDAO{
     fun saveEffortMultipliers(effortMultipliers: EffortMultipliers):Int{
@@ -19,25 +14,25 @@ object EffortMultipliersDAO{
         return Database.Builder()
                 .statement(query)
                 .preparable { statement ->
-                    statement.setNextValue(effortMultipliers.softwareReliability)
-                    statement.setNextValue(effortMultipliers.dataCost)
-                    statement.setNextValue(effortMultipliers.complexity)
-                    statement.setNextValue(effortMultipliers.reusability)
-                    statement.setNextValue(effortMultipliers.documentation)
-                    statement.setNextValue(effortMultipliers.execution)
-                    statement.setNextValue(effortMultipliers.storage)
-                    statement.setNextValue(effortMultipliers.volatility)
-                    statement.setNextValue(effortMultipliers.programmer)
-                    statement.setNextValue(effortMultipliers.continuity)
-                    statement.setNextValue(effortMultipliers.applicationExp)
-                    statement.setNextValue(effortMultipliers.platformExp)
-                    statement.setNextValue(effortMultipliers.languageExp)
-                    statement.setNextValue(effortMultipliers.useSoftware)
-                    statement.setNextValue(effortMultipliers.multisiteDev)
-                    statement.setNextValue(effortMultipliers.schedule)
-                    statement.setNextValue(0.0f)
-                    statement.setNextValue(0.0f)
-                    statement.setNextValue(uuidProject)
+                    statement.setFloat(1,effortMultipliers.softwareReliability)
+                    statement.setFloat(2,effortMultipliers.dataCost)
+                    statement.setFloat(3,effortMultipliers.complexity)
+                    statement.setFloat(4,effortMultipliers.reusability)
+                    statement.setFloat(5,effortMultipliers.documentation)
+                    statement.setFloat(6,effortMultipliers.execution)
+                    statement.setFloat(7,effortMultipliers.storage)
+                    statement.setFloat(8,effortMultipliers.volatility)
+                    statement.setFloat(9,effortMultipliers.analyst)
+                    statement.setFloat(10,effortMultipliers.programmer)
+                    statement.setFloat(11,effortMultipliers.continuity)
+                    statement.setFloat(12,effortMultipliers.applicationExp)
+                    statement.setFloat(13,effortMultipliers.platformExp)
+                    statement.setFloat(14,effortMultipliers.languageExp)
+                    statement.setFloat(15,effortMultipliers.useSoftware)
+                    statement.setFloat(16,effortMultipliers.multisiteDev)
+                    statement.setFloat(17,effortMultipliers.schedule)
+                    statement.setFloat(18,0.0f)
+                    statement.setObject(19,uuidProject)
                 }
                 .onError{error ->
                     logger.error("""There wasa an error on inserting a effort multipliers for project with id: ${effortMultipliers.projectId}
@@ -46,61 +41,5 @@ object EffortMultipliersDAO{
                 }.execute()
     }
 
-    private fun getDBConnection(): Connection? {
 
-        var dbConnection: Connection? = null
-
-        try {
-
-            Class.forName(DB_DRIVER)
-
-        } catch (e: ClassNotFoundException) {
-
-            println(e.message)
-
-        }
-
-        try {
-            dbConnection = DriverManager.getConnection("jdbc:sqlserver://estimator-k.database.windows.net:1433;database=" + DB + ";" +
-                    "user=" + DB_USER + ";password=" + DB_PASSWORD + ";" +
-                    "encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;")
-
-        } catch (e: SQLException) {
-
-            println(e.message)
-
-        }
-
-        return dbConnection
-
-    }
 }
-
-
-//Database.Builder()
-//                .statement(query)
-//                .preparable { statement ->
-//                    statement.setNextValue(effortMultipliers.softwareReliability)
-//                    statement.setNextValue(effortMultipliers.dataCost)
-//                    statement.setNextValue(effortMultipliers.complexity)
-//                    statement.setNextValue(effortMultipliers.reusability)
-//                    statement.setNextValue(effortMultipliers.documentation)
-//                    statement.setNextValue(effortMultipliers.execution)
-//                    statement.setNextValue(effortMultipliers.storage)
-//                    statement.setNextValue(effortMultipliers.volatility)
-//                    statement.setNextValue(effortMultipliers.programmer)
-//                    statement.setNextValue(effortMultipliers.continuity)
-//                    statement.setNextValue(effortMultipliers.applicationExp)
-//                    statement.setNextValue(effortMultipliers.platformExp)
-//                    statement.setNextValue(effortMultipliers.languageExp)
-//                    statement.setNextValue(effortMultipliers.useSoftware)
-//                    statement.setNextValue(effortMultipliers.multisiteDev)
-//                    statement.setNextValue(effortMultipliers.schedule)
-//                    statement.setNextValue(0.0f)
-//                    statement.setNextValue(uuidProject)
-//                }
-//                .onError{error ->
-//                    logger.error("""There wasa an error on inserting a effort multipliers for project with id: ${effortMultipliers.projectId}
-//                        | Error: $error
-//                    """.trimMargin())
-//                }.execute()

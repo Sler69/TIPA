@@ -110,6 +110,7 @@ fun main(args: Array<String>) {
         post("/createProject/",{request: Request, response: Response -> ProjectLogicController.saveProject(request,response) })
         post("/saveEffortMultipliers/",{request: Request, response: Response -> ProjectLogicController.saveEfforMultipliers(request,response)  })
         post("/saveScaleFactors/",{request: Request, response: Response ->  ProjectLogicController.saveScaleFactors(request,response)})
+        post("/functionPointsProyect/",{request: Request, response: Response -> ProjectLogicController.getFunctionPoints(request,response)  })
 
         get("logout/", LogoutController)
 

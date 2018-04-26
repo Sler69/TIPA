@@ -339,7 +339,7 @@
             }
             $http.post('/saveScaleFactors/',data)
                 .then(function successCallback(response) {
-                    var info = response.data.statusInsert;
+                    var info = response.data.insertStatus;
                     if(info){
                         vm.successModalClass = "is-active";
                     }else{
