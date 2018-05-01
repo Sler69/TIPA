@@ -101,6 +101,7 @@ fun main(args: Array<String>) {
         get("/projectBasicInfo/",{request: Request, response: Response -> ProjectLogicController.getBaseProyectInfo(request,response) })
         get("/scaleFactors/:id",{request: Request, response: Response -> ProjectRenderController.renderScaleFactors(request,response) })
         get("/effortMultipliers/:id",{request: Request, response: Response -> ProjectRenderController.renderEffortMultipliers(request,response) })
+        get("/calculateFunPnts/:id",{request: Request, response: Response -> ProjectRenderController.renderFunctionPoints(request,response)  })
 
         //Logic Controllers for users
         post("saveuser", SaveUserController)
@@ -110,7 +111,9 @@ fun main(args: Array<String>) {
         post("/createProject/",{request: Request, response: Response -> ProjectLogicController.saveProject(request,response) })
         post("/saveEffortMultipliers/",{request: Request, response: Response -> ProjectLogicController.saveEfforMultipliers(request,response)  })
         post("/saveScaleFactors/",{request: Request, response: Response ->  ProjectLogicController.saveScaleFactors(request,response)})
-        post("/functionPointsProyect/",{request: Request, response: Response -> ProjectLogicController.getFunctionPoints(request,response)  })
+        post("/functionPointsProject/",{request: Request, response: Response -> ProjectLogicController.getFunctionPoints(request,response)  })
+        post("/saveFunctionPoints/",{request: Request, response: Response -> ProjectLogicController.saveFunctionPoints(request,response)  })
+
 
         get("logout/", LogoutController)
 

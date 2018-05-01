@@ -12,21 +12,22 @@
     <#include "../Base/header.ftl">
     <div>
         <img src="/images/logoCenter.png" width="10%" align=left>
-        <h1 class="title is-1" style="margin-top: 2%"> TIPA: Lista de Proyectos</h1>
+        <h1 class="title is-1" style="margin-top: 2%"> TIPA: Puntos Funcion</h1>
         <hr width="90%" align="right" >
     </div>
     <div ng-app="functionPnts" ng-controller="FunctionPointsController as fnPnt" style="margin-top: 5%;width: 90%;margin-left: auto;margin-right: auto">
-        <div>
-            <p class="title"><strong>Punto Funcion</strong> <small></small></p>
+        <div ng-repeat="fntPoint in fnPnt.listFunctionPoints">
+            <hr width="70%" align="left" ng-if="!$first">
+            <p class="title"><strong>Punto Funcion:</strong> <small>{{fntPoint.getFunctionName()}}</small></p>
             <div class="field">
                 <label class="label">Tipo de Funcion</label>
                 <div class="control">
                     <div class="select">
-                        <select>
-                            <option>Entrada Externa/Peticion Externa</option>
-                            <option>Salida Externa</option>
-                            <option>Archivos Logicos Internos</option>
-                            <option>Archivos Logicos Externos</option>
+                        <select ng-model="fntPoint.tipoFuncion">
+                            <option value="Entrada Externa/Peticion Externa">Entrada Externa/Peticion Externa</option>
+                            <option value="Salida Externa">Salida Externa</option>
+                            <option value="Archivos Logicos Internos">Archivos Logicos Internos</option>
+                            <option value="Archivos Logicos Externos">Archivos Logicos Externos</option>
                         </select>
                     </div>
                 </div>
@@ -35,17 +36,19 @@
             <div class="field">
                 <label class="label">No.Entitades</label>
                 <div class="control">
-                    <input class="input" type="number" placeholder="No. Entidades">
+                    <input class="input" type="number" ng-model="fntPoint.numberOfEntities" placeholder="No. Entidades">
                 </div>
             </div>
 
             <div class="field">
                 <label class="label">No. de Atributos</label>
                 <div class="control">
-                    <input class="input" type="number" placeholder="No. Atrributos">
+                    <input class="input" type="number" ng-model="fntPoint.numberOfAttributes" placeholder="No. Atrributos">
                 </div>
             </div>
         </div>
+
+        <a class="button is-dark is-center" ng-click="fnPnt.submitFunctionPoints()" style="margin-bottom: 5%;margin-top: 5%;margin-right: auto;margin-left: auto">Subir Puntos Funcion</a>
     </div>
 </div>
 </body>

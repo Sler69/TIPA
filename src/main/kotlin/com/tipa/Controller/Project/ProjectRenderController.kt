@@ -42,5 +42,12 @@ class ProjectRenderController {
             formTemplate.process(null,writer)
             return writer.toString()
         }
+
+        fun renderFunctionPoints(req: Request,resp: Response):String{
+            val writer = StringWriter()
+            val formTemplate = configuration.getTemplate("templates/PojectValues/functionPoints.ftl")
+            formTemplate.process(null,writer)
+            return writer.toString()
+        }
     }
 }

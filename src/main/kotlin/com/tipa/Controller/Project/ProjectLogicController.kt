@@ -4,6 +4,7 @@ import com.google.gson.Gson
 import com.google.gson.JsonParser
 import com.tipa.Controller.UserControllers.UserSessionInfo
 import com.tipa.Dao.*
+import com.tipa.Dto.FunctionPointDTO
 import com.tipa.Util.bodyAs
 import com.tipa.Util.prepare
 import spark.Request
@@ -82,8 +83,13 @@ class ProjectLogicController{
 
         fun saveScaleFactors(req:Request,resp:Response):Any{
             val scaleFactor = req.bodyAs(ScaleFactors::class.java)
+            val projectId = UUID.fromString(scaleFactor.projectId)
+
             val model = HashMap<String,Any>()
             val insertStatus = ScaleFactorsDAO.saveScaleFactors(scaleFactor) ==1
+
+            ProjectDAO.updateScaleFactorsStatus(projectId)
+
             model.put("insertStatus",insertStatus)
             return resp.prepare(200,model)
 
@@ -94,13 +100,61 @@ class ProjectLogicController{
             val model = HashMap<String,Any>()
 
             val insertStatus = EffortMultipliersDAO.saveEffortMultipliers(effortMultipliers) == 1
+            val projecIdUUID = UUID.fromString(effortMultipliers.projectId)
+            ProjectDAO.updateMultipliersStatus(projecIdUUID)
             model.put("insertStatus",insertStatus)
             return resp.prepare(200,model)
 
         }
 
-        fun getFunctionPoints(req: Request,resp: Response){
+        fun getFunctionPoints(req: Request,resp: Response):Any{
+            val bodyRequest = req.body().toString()
+            val jsonParsingObject = JsonParser()
+            val jsonObject = jsonParsingObject.parse(bodyRequest).asJsonObject
+            val id = jsonObject.get("projecId").asString
+            val uuidValue = UUID.fromString(id)
 
+            val listFunctionPoints = FunctionPointsDAO.getFunctionPointsById(uuidValue)
+            val model = HashMap<String,Any>()
+            model.put("fntPoints",listFunctionPoints)
+            return resp.prepare(200,model)
+        }
+
+        fun saveFunctionPoints(req: Request,resp: Response):Any{
+            val bodyRequest = req.body().toString()
+            val jsonParsingObject = JsonParser()
+
+            val bodyJsonObject = jsonParsingObject.parse(bodyRequest).asJsonObject
+            val functionPointsRaw = bodyJsonObject.getAsJsonArray("lstFunctionPoints")
+            val idProject = bodyJsonObject.get("idProject").asString
+            val projectIdUUID = UUID.fromString(idProject)
+
+            val model = HashMap<String,Any>()
+
+            val fntPointsList= ArrayList<FunctionPointDTO>(functionPointsRaw.size())
+
+            for(i in 0 until functionPointsRaw.size()){
+                val functionPointJSONObject = functionPointsRaw.get(i).asJsonObject
+                val intAttributes = functionPointJSONObject.get("numberOfAttributes").asInt
+                val intEntities = functionPointJSONObject.get("numberOfEntities").asInt
+                val fntPointId = functionPointJSONObject.get("idFunctionPoint").asInt
+                val typeFunction = functionPointJSONObject.get("tipoFuncion").asString
+
+                val fnPointDTO = FunctionPointDTO(
+                        intAtributes = intAttributes,
+                        intIdFunctionPoint = fntPointId,
+                        intEntities = intEntities,
+                        tipoFuncion = typeFunction
+                )
+                fntPointsList.add(fnPointDTO)
+            }
+
+            val insertStatus = FunctionPointsDAO.updateFunctionPoints(fntPointsList) != 0
+
+            ProjectDAO.updateFunctionPointsStatus(projectIdUUID)
+
+            model.put("insertStatus",insertStatus)
+            return resp.prepare(200,model)
         }
 
     }

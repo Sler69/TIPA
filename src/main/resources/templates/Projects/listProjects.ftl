@@ -19,8 +19,8 @@
     <div ng-app="listProjects" ng-controller="ListProjectController as lstProjectCont" style="margin-top: 5%;width: 90%;margin-left: auto;margin-right: auto">
     <article class="media" style="box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);border: 1px solid #209cee" ng-repeat="project in lstProjectCont.listProjectsInfo">
         <figure class="media-left" >
-            <p class="title">
-                0%
+            <p class="title" style="margin-top: 50%;margin-left: 15%;">
+                {{project.getPerentageProject()}}%
             </p>
         </figure>
         <div class="media-content is-info">
@@ -34,35 +34,67 @@
                     <br>
                     <strong>Precio por hora: </strong>$ {{project.getPriceProject()}}<small></small>
                 </p>
+                <progress class="progress is-info" value="{{project.getPerentageProject()}}" max="100" style="margin-bottom: 1%;width: 50%">{{project.getPerentageProject()}}%</progress>
             </div>
         </div>
         <div class="media-right columns">
-                <div class="column">
-                    <a class="button is-dark is-small" href="/calculateFunPnts/{{project.getIdProject()}}" >
+            <div class="column">
+                <a class="button is-dark is-small" style="margin-top: 2%"
+                   ng-if="!project.getFnPointsDone()"
+                   href="/calculateFunPnts/{{project.getIdProject()}}" >
+                    <span class="icon is-small ">
+                        <i class="fas fa-plus"></i>
+                    </span>
+                    <span>Puntos funcion</span>
+                </a>
+                <a class="button is-dark is-small" style="margin-top: 2%"
+                   ng-if="!project.getMultipDone()"
+                   href="/effortMultipliers/{{project.getIdProject()}}">
+                    <span class="icon is-small">
+                        <i class="fas fa-plus"></i>
+                    </span>
+                    <span>Multiplicadores de Ezfuerzo</span>
+                </a>
+                <a class="button is-dark is-small"
+                   ng-if="!project.getScaleFactorsDone()" style="margin-top: 2%"
+                   href="/scaleFactors/{{project.getIdProject()}}">
+                    <span class="icon is-small">
+                        <i class="fas fa-plus"></i>
+                    </span>
+                    <span>Scale factors</span>
+                </a>
+            </div>
+            <div class="column">
+                <a class="button is-success is-small" style="margin-top: 2%"" disabled
+                   ng-if="project.getFnPointsDone()">
                         <span class="icon is-small ">
-                            <i class="fas fa-plus"></i>
+                            <i class="fas fa-check"></i>
                         </span>
-                        <span>Puntos funcion</span>
-                    </a>
-                    <a class="button is-dark is-small" href="/effortMultipliers/{{project.getIdProject()}}">
+                    <span>Puntos funcion</span>
+                </a>
+                <a class="button is-success is-small " style="margin-top: 2%" disabled
+                   ng-if="project.getMultipDone()">
                         <span class="icon is-small">
-                            <i class="fas fa-plus"></i>
+                            <i class="fas fa-check"></i>
                         </span>
-                        <span>Multiplicadores de Ezfuerzo</span>
-                    </a>
-                    <a class="button is-dark is-small" href="/scaleFactors/{{project.getIdProject()}}">
+                    <span>Multiplicadores de Ezfuerzo</span>
+                </a>
+                <a class="button is-success is-small " style="margin-top: 2%" disabled
+                   ng-if="project.getScaleFactorsDone()">
                         <span class="icon is-small">
-                            <i class="fas fa-plus"></i>
+                            <i class="fas fa-check"></i>
                         </span>
-                        <span>Scale factors</span>
-                    </a>
-                    <a class="button is-dark is-small" href="/estimateProject/{{project.getIdProject()}}">
-                        <span class="icon is-small">
-                            <i class="fas fa-plus"></i>
-                        </span>
-                        <span>Estimacion</span>
-                    </a>
-                </div>
+                    <span>Scale factors</span>
+                </a>
+                <a class="button is-dark is-small" style="margin-top: 2%"
+                   ng-if="project.getReadyEstimation()"
+                   href="/estimateProject/{{project.getIdProject()}}">
+                    <span class="icon is-small">
+                        <i class="fas fa-plus"></i>
+                    </span>
+                    <span>Estimacion</span>
+                </a>
+            </div>
         </div>
     </article>
     </div>

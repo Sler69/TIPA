@@ -48,4 +48,52 @@ object ProjectDAO{
                     """.trimMargin())
                 }.query(ProjectsViewDTOs)
     }
+
+    fun updateFunctionPointsStatus(projectId:UUID):Int{
+        val query = """
+                UPDATE Projects SET fnPointsDone = 1 WHERE idProyecto = ?;
+            """
+
+        return Database.Builder()
+                .statement(query)
+                .preparable { statement ->
+                    statement.setObject(1,projectId)
+                }.onError { error ->
+                    logger.error("""There was an error updating the function points status for project id : ${projectId.toString()}
+                        | ERROR: $error
+                    """.trimMargin())
+                }.execute()
+    }
+
+    fun updateMultipliersStatus(projectId:UUID):Int{
+        val query = """
+                UPDATE Projects SET multipDone = 1 where idProyecto = ?;
+            """
+
+        return Database.Builder()
+                .statement(query)
+                .preparable { statement ->
+                    statement.setObject(1,projectId)
+                }.onError { error ->
+                    logger.error("""There was an error updating the multipliers status for project id : ${projectId.toString()}
+                        | ERROR: $error
+                    """.trimMargin())
+                }.execute()
+    }
+
+    fun updateScaleFactorsStatus(projectId: UUID):Int{
+        val query = """
+                UPDATE Projects SET scaleFacDone = 1 where idProyecto = ?
+            """
+
+        return Database.Builder()
+                .statement(query)
+                .preparable { statement ->
+                    statement.setObject(1,projectId)
+                }.onError { error ->
+                    logger.error("""There was an error updating the scale factors status for project id : ${projectId.toString()}
+                        | ERROR: $error
+                    """.trimMargin())
+                }.execute()
+    }
 }

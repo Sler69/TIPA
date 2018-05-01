@@ -45,6 +45,46 @@
         Project.prototype.getNameOrganization = function () {
             return this.nameOrganization;
         };
+        
+        Project.prototype.setFnPointsDone = function (fnPointsDone) {
+            this.fnPointsDone = fnPointsDone;
+        }
+
+        Project.prototype.getFnPointsDone = function () {
+            return this.fnPointsDone;
+        }
+        
+        Project.prototype.setMultipDone = function (multiplierDone) {
+            this.multiplierDone = multiplierDone;
+        }
+
+        Project.prototype.getMultipDone = function () {
+            return this.multiplierDone;
+        }
+        
+        Project.prototype.setScaleFactorDone = function (scaleFactorsDone) {
+            this.scaleFactorsDone = scaleFactorsDone;
+        }
+        
+        Project.prototype.getScaleFactorsDone = function () {
+            return this.scaleFactorsDone;
+        }
+        
+        Project.prototype.setReadyEstimation = function (readyEstimation) {
+            this.readyEstimation = readyEstimation;
+        }
+        
+        Project.prototype.getReadyEstimation =function () {
+            return this.readyEstimation;
+        }
+
+        Project.prototype.setPercentageProject = function (percentage) {
+            this.percentageProject = percentage;
+        }
+
+        Project.prototype.getPerentageProject = function () {
+            return this.percentageProject;
+        }
         return Project;
     }]);
 
@@ -60,7 +100,7 @@
             });
 
         function initList(lstProjects){
-
+            debugger
             angular.forEach(lstProjects,function (project) {
                 var projectInfo = new Project();
                 projectInfo.setDateProject(project.dateProject);
@@ -69,6 +109,35 @@
                 projectInfo.setProjectName(project.nameProject);
                 var priceRaw = project.priceProject;
                 projectInfo.setPriceProject(priceRaw.toFixed(2));
+
+                var fnPointsDone = !!project.fnPointsDone;
+                var scaleFactorsDone = !!project.scaleFactorsDone;
+                var multipliersDone = !!project.multipliersDone;
+
+                projectInfo.setMultipDone(multipliersDone);
+                projectInfo.setScaleFactorDone(scaleFactorsDone);
+                projectInfo.setFnPointsDone(fnPointsDone);
+
+                if(fnPointsDone && scaleFactorsDone && multipliersDone){
+                    projectInfo.setReadyEstimation(true);
+                    projectInfo.setPercentageProject(100);
+                }else{
+                    if(fnPointsDone){
+                        if(scaleFactorsDone || multipliersDone){
+                            projectInfo.setPercentageProject(66);
+                        }else{
+                            projectInfo.setPercentageProject(33);
+                        }
+                    }else{
+                        if(scaleFactorsDone && multipliersDone){
+                            projectInfo.setPercentageProject(66);
+                        }else if(scaleFactorsDone || multipliersDone){
+                            projectInfo.setPercentageProject(33);
+                        }else{
+                            projectInfo.setPercentageProject(0);
+                        }
+                    }
+                }
                 vm.listProjectsInfo.push(projectInfo);
             })
         }

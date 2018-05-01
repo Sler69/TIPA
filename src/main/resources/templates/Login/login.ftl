@@ -47,7 +47,7 @@
                         </p>
                     </div>
                     <a class="button is-dark login-button" id="loginUser">Login</a><br>
-                    <a href="/createuser" class="button is-info login-button">Create User</a>
+                    <a href="/createuser" class="button is-info login-button">Crear Usuario</a>
                 </div>
             </div>
         </form>
