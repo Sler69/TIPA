@@ -287,7 +287,7 @@
                 <p class=" has-text-centered">Se guardaron existosamento los multiplicadores</p>
             </section>
             <footer class="modal-card-foot has-text-centered" style="margin-top: 2%">
-                <a class="button is-success  is-centered" style="margin-left: auto; margin-right: auto" href="/organizations/">Ir a la pagina de organizaciones</a>
+                <a class="button is-success  is-centered" style="margin-left: auto; margin-right: auto" href="/listProjects/">Ir a Proyectos</a>
             </footer>
         </div>
     </div>

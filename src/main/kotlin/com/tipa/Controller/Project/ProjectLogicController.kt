@@ -4,6 +4,7 @@ import com.google.gson.Gson
 import com.google.gson.JsonParser
 import com.tipa.Controller.UserControllers.UserSessionInfo
 import com.tipa.Dao.*
+import com.tipa.Dto.FullRequirementDTO
 import com.tipa.Dto.FunctionPointDTO
 import com.tipa.Util.bodyAs
 import com.tipa.Util.prepare
@@ -48,17 +49,18 @@ class ProjectLogicController{
             val uuidForProject = UUID.randomUUID()
             val insertProjectStatus = ProjectDAO.insertProject(uuidForProject,prjectName,dateProjectDate,prioeProject,organizationIdProject,modelProject,languageProject) ==1
 
-            val functionPointsRaw = bodyJsonObject.getAsJsonArray("functionPntsProject")
+            val functionPointsRaw = bodyJsonObject.getAsJsonArray("lstRequirements")
 
-            val namesFunctionPnts =  ArrayList<String>()
+            val nameRequirements =  HashMap<UUID,String>()
 
             for(i in 0 until functionPointsRaw.size()){
                 val functionPointJSONObject = functionPointsRaw.get(i).asJsonObject
                 val name = functionPointJSONObject.get("value").asString
-                namesFunctionPnts.add(name)
+                val uuidRequirement = UUID.randomUUID();
+                nameRequirements.put(uuidRequirement,name)
             }
 
-            val insertFunctionPntStatus = FunctionPointsDAO.inserFunctionPoints(uuidForProject,namesFunctionPnts) != 0
+            val insertFunctionPntStatus = RequirementDAO.insertRequirements(nameRequirements,uuidForProject) != 0
 
             val model = HashMap<String,Any>()
 
@@ -114,9 +116,9 @@ class ProjectLogicController{
             val id = jsonObject.get("projecId").asString
             val uuidValue = UUID.fromString(id)
 
-            val listFunctionPoints = FunctionPointsDAO.getFunctionPointsById(uuidValue)
+            val lstRequirements = RequirementDAO.getRequirementsById(uuidValue)
             val model = HashMap<String,Any>()
-            model.put("fntPoints",listFunctionPoints)
+            model.put("lstRequirements",lstRequirements)
             return resp.prepare(200,model)
         }
 
@@ -125,31 +127,49 @@ class ProjectLogicController{
             val jsonParsingObject = JsonParser()
 
             val bodyJsonObject = jsonParsingObject.parse(bodyRequest).asJsonObject
-            val functionPointsRaw = bodyJsonObject.getAsJsonArray("lstFunctionPoints")
+            val lstRequirementsRaw = bodyJsonObject.getAsJsonArray("lstRequirements")
             val idProject = bodyJsonObject.get("idProject").asString
             val projectIdUUID = UUID.fromString(idProject)
 
             val model = HashMap<String,Any>()
 
-            val fntPointsList= ArrayList<FunctionPointDTO>(functionPointsRaw.size())
+            val lstRequirements= ArrayList<FullRequirementDTO>(lstRequirementsRaw.size())
 
-            for(i in 0 until functionPointsRaw.size()){
-                val functionPointJSONObject = functionPointsRaw.get(i).asJsonObject
-                val intAttributes = functionPointJSONObject.get("numberOfAttributes").asInt
-                val intEntities = functionPointJSONObject.get("numberOfEntities").asInt
-                val fntPointId = functionPointJSONObject.get("idFunctionPoint").asInt
-                val typeFunction = functionPointJSONObject.get("tipoFuncion").asString
+            for(i in 0 until lstRequirementsRaw.size()){
+                val requirementJsonObject = lstRequirementsRaw.get(i).asJsonObject
+                val requirementName = requirementJsonObject.get("name").asString
+                val requirementIdStirng = requirementJsonObject.get("id").asString
 
-                val fnPointDTO = FunctionPointDTO(
-                        intAtributes = intAttributes,
-                        intIdFunctionPoint = fntPointId,
-                        intEntities = intEntities,
-                        tipoFuncion = typeFunction
+                val fntPointsRequirementRaw = requirementJsonObject.getAsJsonArray("functionPnts");
+
+                var lstFntPoints = ArrayList<FunctionPointDTO>()
+
+                for(i in 0 until fntPointsRequirementRaw.size()){
+                    val functionPointJSONObject = fntPointsRequirementRaw.get(i).asJsonObject;
+                    val intAttributes = functionPointJSONObject.get("numberOfAttributes").asInt
+                    val intEntities = functionPointJSONObject.get("numberOfEntities").asInt
+                    val fntPointId = functionPointJSONObject.get("idFunctionPoint").asInt
+                    val typeFunction = functionPointJSONObject.get("tipoFuncion").asString
+
+                    val fnPointDTO = FunctionPointDTO(
+                            intAtributes = intAttributes,
+                            intIdFunctionPoint = fntPointId,
+                            intEntities = intEntities,
+                            tipoFuncion = typeFunction
+                    )
+                    lstFntPoints.add(fnPointDTO)
+                }
+
+                var requiretementDTO = FullRequirementDTO(
+                        id = UUID.fromString(requirementIdStirng),
+                        name = requirementName,
+                        lstFntPoints = lstFntPoints
+
                 )
-                fntPointsList.add(fnPointDTO)
-            }
+                lstRequirements.add(requiretementDTO)
 
-            val insertStatus = FunctionPointsDAO.updateFunctionPoints(fntPointsList) != 0
+            }
+            val insertStatus = FunctionPointsDAO.inserFunctionPointsFromRequirements(lstRequirements) != 0
 
             ProjectDAO.updateFunctionPointsStatus(projectIdUUID)
 

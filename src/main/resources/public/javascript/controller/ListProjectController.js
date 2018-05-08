@@ -100,7 +100,6 @@
             });
 
         function initList(lstProjects){
-            debugger
             angular.forEach(lstProjects,function (project) {
                 var projectInfo = new Project();
                 projectInfo.setDateProject(project.dateProject);
@@ -110,7 +109,7 @@
                 var priceRaw = project.priceProject;
                 projectInfo.setPriceProject(priceRaw.toFixed(2));
 
-                var fnPointsDone = !!project.fnPointsDone;
+                var fnPointsDone = !!project.fntPointsDone;
                 var scaleFactorsDone = !!project.scaleFactorsDone;
                 var multipliersDone = !!project.multipliersDone;
 

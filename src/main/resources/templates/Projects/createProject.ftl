@@ -73,16 +73,16 @@
     </div>
 
     <div class="field ">
-        <label class="label">Agregar Puntos Funcion</label>
-        <button class="button is-primary" ng-click="crtProject.addFunctionPoint();crtProject.checkInformation()">Agregar un Punto Funcion +</button>
+        <label class="label">Agregar Requerimientos</label>
+        <button class="button is-primary" ng-click="crtProject.addRequirement();crtProject.checkInformation()">Agregar un Requerimiento +</button>
     </div>
     <div class="is-rounded" style="height: 15%;overflow: auto;border:1px solid black">
-        <div class="field has-addons" ng-repeat="functionPoint in crtProject.lstFunctionPoints">
+        <div class="field has-addons" ng-repeat="requirement in crtProject.lstRequirements">
             <div class="control" style="width: 80%">
-                <input class="input" ng-model="functionPoint.value" ng-change="crtProject.checkInformation()" type="text" placeholder="Nombre de punto Funcion"/>
+                <input class="input" ng-model="requirement.value" ng-change="crtProject.checkInformation()" type="text" placeholder="Nombre del Requerimiento"/>
             </div>
             <div class="control">
-                <a class="button is-danger" ng-click="crtProject.removeFunctionPoint(functionPoint)">
+                <a class="button is-danger" ng-click="crtProject.removeRequirement(requirement)">
                     X
                 </a>
             </div>

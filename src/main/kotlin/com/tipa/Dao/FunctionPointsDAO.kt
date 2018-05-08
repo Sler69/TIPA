@@ -1,9 +1,10 @@
 package com.tipa.Dao
 
 import Util.Database.Database
+import com.tipa.Dto.FullRequirementDTO
 import com.tipa.Dto.FunctionPointDTO
+import com.tipa.Dto.RequirementDTO
 import java.io.StringWriter
-import java.sql.Date
 import java.util.*
 
 
@@ -78,5 +79,47 @@ object FunctionPointsDAO{
                 }.execute()
     }
 
+
+    fun inserFunctionPointsFromRequirements(requirements: List<FullRequirementDTO>):Int{
+
+        val stringForQuery = StringBuilder()
+        val initialQuery = """
+         INSERT INTO Funciones (TipoFuncion, NumeroEntidades, NumeroAtributos, idRequirement) VALUES """
+        stringForQuery.append(initialQuery);
+
+        requirements.forEach{requirement ->
+            requirement.lstFntPoints.forEach{
+                stringForQuery.append("""(?,?,?,?), """)
+            }
+        }
+
+        stringForQuery.deleteCharAt(stringForQuery.length-2)
+
+
+        val completeQuery = stringForQuery.toString()
+
+        val info = Database.Builder()
+                .statement(completeQuery)
+                .preparable { statement ->
+
+                    requirements.forEach{requirement ->
+                        requirement.lstFntPoints.forEach{fntPont ->
+                            statement.setNextValue(fntPont.tipoFuncion)
+                            statement.setNextValue(fntPont.intEntities)
+                            statement.setNextValue(fntPont.intAtributes)
+                            statement.setNextValue(requirement.id)
+
+                        }
+                    }
+
+                }
+                .onError{error ->
+                    logger.error("""There wasa an error on inserting a project with id:  and organization id:
+                        | Error: ${error.printStackTrace()}
+                    """.trimMargin())
+                }.execute()
+
+        return info
+    }
 
 }

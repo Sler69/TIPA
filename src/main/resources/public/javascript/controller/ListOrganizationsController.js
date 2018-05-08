@@ -73,7 +73,7 @@
         }
 
         function selectOrganization (selectedOrganization){
-            debugger
+
             angular.forEach(vm.listOrganizations,function (organization) {
                 var idOrganization = organization.getId();
                 if(idOrganization === vm.selectedOrganizationId ){

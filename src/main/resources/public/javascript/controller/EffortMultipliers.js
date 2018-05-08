@@ -994,7 +994,7 @@
 
             $http.post('/saveEffortMultipliers/',data)
                 .then(function successCallback(response) {
-                    debugger
+
                     var info = response.data.insertStatus;
                     if(info){
                         vm.successModalClass = "is-active";

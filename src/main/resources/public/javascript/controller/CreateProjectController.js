@@ -74,38 +74,38 @@
         return Language;
     }]);
 
-    createProject.factory('FunctionPoint',[function () {
-        var FunctionPoint = function () {
+    createProject.factory('Requirement',[function () {
+        var Requirement = function () {
 
         }
 
-        FunctionPoint.prototype.setName= function (name) {
+        Requirement.prototype.setName= function (name) {
             this.name = name;
         }
 
-        FunctionPoint.prototype.getName = function(){
+        Requirement.prototype.getName = function(){
             return this.name;
         }
 
-        FunctionPoint.prototype.getId = function () {
+        Requirement.prototype.getId = function () {
             return this.id;
         }
-        FunctionPoint.prototype.setId= function (id) {
+        Requirement.prototype.setId= function (id) {
             this.id = id;
         }
         
-        return FunctionPoint;
+        return Requirement;
     }]);
 
 
-    createProject.controller('CreateProjectController', ['$http','$scope','Organization','ModelProgramming','Language','FunctionPoint',function($http , $scope,Organization,ModelProgramming,Language,FunctionPoint){
+    createProject.controller('CreateProjectController', ['$http','$scope','Organization','ModelProgramming','Language','Requirement',function($http , $scope,Organization,ModelProgramming,Language,FunctionPoint){
         var vm = this;
         vm.startingDate = new Date();
 
         vm.lstOrganizations =[];
         vm.lstLanguages = [];
         vm.lstModels = [];
-        vm.lstFunctionPoints = [];
+        vm.lstRequirements = [];
 
         vm.pricePerHour = 0;
         vm.selectedOrganizationId = "";
@@ -118,8 +118,8 @@
 
         vm.disableButton = true;
 
-        vm.addFunctionPoint = addFunctionPoint;
-        vm.removeFunctionPoint = removeFunctionPoint;
+        vm.addRequirement = addRequirement;
+        vm.removeRequirement = removeRequirement;
         vm.addProyect = addProyect;
         vm.checkInformation = checkInformation;
         vm.closeErrorModal = closeErrorModal;
@@ -139,7 +139,7 @@
             });
 
         function checkInformation(){
-            if(vm.nameProyect != "" && vm.lstFunctionPoints.length != 0 && vm.pricePerHour != 0
+            if(vm.nameProyect != "" && vm.lstRequirements.length != 0 && vm.pricePerHour != 0
                 && vm.selectedModelId != "" && vm.selectedOrganizationId != "" && vm.selectedLanguageId != "" ){
                 vm.disableButton = false;
             }else{
@@ -155,7 +155,7 @@
             var model = parseInt(vm.selectedModelId);
             var organization = parseInt(vm.selectedOrganizationId);
             var price = vm.pricePerHour;
-            var functionPn = vm.lstFunctionPoints;
+            var lstRequirements = vm.lstRequirements;
 
             var data = {
                 "projectName":nombreProyecto,
@@ -164,7 +164,7 @@
                 "modelProject":model,
                 "organizationProject":organization,
                 "priceProject":price,
-                "functionPntsProject":functionPn
+                "lstRequirements":lstRequirements
             }
 
             $http.post('/createProject/',data)
@@ -189,27 +189,26 @@
             vm.errorModalClass = "";
         }
 
-        function addFunctionPoint(){
-            var idForNewFunctionPoint = vm.lstFunctionPoints.length;
+        function addRequirement(){
+            var idForNewFunctionPoint = vm.lstRequirements.length;
             var newFunctionPoint = new FunctionPoint();
             newFunctionPoint.setId(idForNewFunctionPoint);
-            vm.lstFunctionPoints.push(newFunctionPoint);
-            console.log(vm.lstFunctionPoints);
+            vm.lstRequirements.push(newFunctionPoint);
+            console.log(vm.lstRequirements);
         }
 
-        function removeFunctionPoint(functionPoint){
-            var functionPointIndex = functionPoint.getId();
-            vm.lstFunctionPoints.splice(functionPointIndex,1);
-            for(var i = functionPointIndex;i<vm.lstFunctionPoints.length;i++){
-                var fnPoint = vm.lstFunctionPoints[i];
-                var fnPointNewIndex = fnPoint.getId()-1;
-                fnPoint.setId(fnPointNewIndex)
+        function removeRequirement(requirement){
+            var requirementIndex = requirement.getId();
+            vm.lstRequirements.splice(requirementIndex,1);
+            for(var i = requirementIndex;i<vm.lstRequirements.length;i++){
+                var requirementInfo = vm.lstRequirements[i];
+                var requirementNewIndex = requirementInfo.getId()-1;
+                requirementInfo.setId(requirementNewIndex)
             }
-            console.log(vm.lstFunctionPoints)
         }
 
         function resetViewForNewProject (){
-            vm.lstFunctionPoints = [];
+            vm.lstRequirements = [];
             vm.pricePerHour = 0;
             vm.selectedOrganizationId = "";
             vm.selectedModelId = "";
