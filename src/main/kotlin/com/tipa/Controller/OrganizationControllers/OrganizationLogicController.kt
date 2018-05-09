@@ -30,7 +30,7 @@ class OrganizationLogicController(){
         fun getOrganizations(request:Request,response:Response):Any{
             val model = HashMap<String,Any>()
             val idUser = UserSessionInfo.getIdUserSession(request)
-            val lstOrganizations = OrganizationDAO.getOrganizationsOfUser(idUser)
+            val lstOrganizations = OrganizationDAO.getOrganizationOfUserCout(idUser)
 
             model.put("organizations",lstOrganizations);
             return response.prepare(200,model)

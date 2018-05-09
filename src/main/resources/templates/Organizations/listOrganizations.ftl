@@ -28,7 +28,7 @@
                     <tbody>
                         <tr ng-repeat="organization in lstOrganizations.listOrganizations" ng-class="organization.getSelectedClass()" ng-click="lstOrganizations.selectOrganization(organization)">
                             <td>{{organization.getName()}}</td>
-                            <td>0</td>
+                            <td>{{organization.getNumberOfProjects()}}</td>
                         </tr>
                     </tbody>
                 </table>

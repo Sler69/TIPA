@@ -39,6 +39,25 @@ object OrganizationDAO{
                 }.query(OrganizationDTO)
     }
 
+    fun getOrganizationOfUserCout(idUser:Int):List<OrganizationDTO>{
+        val query = """
+            SELECT * FROM Organizations  O
+                    INNER JOIN (SELECT  idOrganizacion,count(*) as cnt
+                    FROM Projects
+                    GROUP BY idOrganizacion) P ON O.idOrganization = P.idOrganizacion
+                        WHERE O.idUser = ?
+        """.trimIndent()
+        return Database.Builder()
+                .statement(query)
+                .preparable{statement ->
+                    statement.setInt(1,idUser)
+                }.onError{error ->
+                    logger.error("""There wasa an erro on retrivieng the list of organizations for the user id: $idUser
+                        | Error: $error
+                    """.trimMargin())
+                }.query(OrganizationDTO)
+    }
+
     fun updateOrganizationName(idOrganization:Int,organizationName: String):Int{
         val query = """
                 UPDATE Organizations

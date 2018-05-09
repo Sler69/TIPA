@@ -29,6 +29,16 @@
         Organization.prototype.getSelectedClass = function () {
             return this.classSelected;
         };
+
+
+        Organization.prototype.setNumberOfProjects= function (numProjects) {
+            this.numProjects = numProjects;
+        };
+
+        Organization.prototype.getNumberOfProjects = function(){
+            return this.numProjects;
+        };
+
         return Organization;
     }]);
 
@@ -63,10 +73,12 @@
         }
 
         function initList (organizations){
+            debugger
             angular.forEach(organizations,function (organization) {
                 var newOrganization = new Organization();
                 newOrganization.setId(organization.id);
                 newOrganization.setName(organization.name);
+                newOrganization.setNumberOfProjects(organization.countProject)
                 newOrganization.setSelectedClass("");
                 vm.listOrganizations.push(newOrganization);
             });
