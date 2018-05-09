@@ -1,6 +1,7 @@
 package com.tipa.Dao
 
 import Util.Database.Database
+import com.tipa.Dto.LanguageDTO
 import com.tipa.Dto.LanguageViewDTO
 import com.tipa.Dto.OrganizationDTO
 
@@ -16,5 +17,22 @@ object LanguageDAO{
                         | Error: $error
                     """.trimMargin())
                 }.query(LanguageViewDTO)
+    }
+
+    fun getLanguagesforCalculation(idLenguaje:Int):List<LanguageDTO>{
+        val query = """
+                SELECT * FROM Lenguaje
+                WHERE idLenguaje = ?
+            """
+        return Database.Builder()
+                .statement(query)
+                .preparable { statement ->
+                    statement.setInt(1,idLenguaje)
+                }
+                .onError{error ->
+                    logger.error("""There wasa an erro on retrivieng the list of languajes
+                        | Error: $error
+                    """.trimMargin())
+                }.query(LanguageDTO)
     }
 }

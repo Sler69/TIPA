@@ -16,7 +16,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.6/angular-material.min.js"></script>
 
 </head>
-<body>
+<body style="height: 100%;min-height: 100%;background-color: white">
     <#include "../Base/header.ftl">
 <div>
     <img src="/images/logoCenter.png" width="10%" align=left>
@@ -76,7 +76,7 @@
         <label class="label">Agregar Requerimientos</label>
         <button class="button is-primary" ng-click="crtProject.addRequirement();crtProject.checkInformation()">Agregar un Requerimiento +</button>
     </div>
-    <div class="is-rounded" style="height: 15%;overflow: auto;border:1px solid black">
+    <div class="is-rounded" style="height: 40%;overflow: auto;border:1px solid black">
         <div class="field has-addons" ng-repeat="requirement in crtProject.lstRequirements">
             <div class="control" style="width: 80%">
                 <input class="input" ng-model="requirement.value" ng-change="crtProject.checkInformation()" type="text" placeholder="Nombre del Requerimiento"/>
@@ -89,7 +89,7 @@
         </div>
     </div>
 
-    <div class="control" style="padding-left:35%;margin-top: 2%;">
+    <div class="control" style="padding-left:35%;margin-top: 2%;margin-bottom: 4%">
         <button class="button is-dark" ng-click="crtProject.addProyect()" ng-disabled="crtProject.disableButton" style="width: 70%" >Crear Proyecto</button>
     </div>
 

@@ -43,18 +43,18 @@ object FunctionPointsDAO{
         return info
     }
 
-    fun getFunctionPointsById(idProject: UUID):List<FunctionPointDTO>{
+    fun getFunctionPointsById(idRequirement: UUID):List<FunctionPointDTO>{
         val query = """
             SELECT * FROM Funciones
-            WHERE idProyectoRelacion = ?
+            WHERE idRequirement = ?
         """.trimIndent()
 
         return Database.Builder()
                 .statement(query)
                 .preparable { statement ->
-                    statement.setObject(1,idProject)
+                    statement.setObject(1,idRequirement)
                 }.onError{ error ->
-                    logger.error("""There was an error retrieving the function points for the project id: ${idProject.toString()}""")
+                    logger.error("""There was an error retrieving the function points for the project id: ${idRequirement.toString()}""")
                 }.query(FunctionPointDTO)
 
     }
@@ -120,6 +120,22 @@ object FunctionPointsDAO{
                 }.execute()
 
         return info
+    }
+
+    fun getFunctionPointsOfProject(projectId:UUID):List<FunctionPointDTO>{
+        val query = """
+            SELECT * FROM Requirements
+            INNER JOIN Funciones ON Requirements.idRequirement = Funciones.idRequirement WHERE idProyectRelationShip = ?
+        """.trimIndent()
+
+        return  Database.Builder()
+                .statement(query)
+                .preparable { statement ->
+                    statement.setObject(1,projectId)
+                }.onError{ error ->
+                    logger.error("""There was an error retrieving the function points for the project id: ${projectId.toString()}""")
+                }.query(FunctionPointDTO)
+
     }
 
 }

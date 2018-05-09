@@ -2,7 +2,8 @@ package com.tipa.Dao
 
 import Util.Database.Database
 import com.tipa.Controller.Project.EffortMultipliers
-import java.sql.*
+import com.tipa.Dto.MultipliersDTO
+
 import java.util.*
 
 
@@ -41,5 +42,23 @@ object EffortMultipliersDAO{
                 }.execute()
     }
 
+    fun getEffortMultipliersProject(projectId:UUID):List<MultipliersDTO>{
+        val query = """
+            SELECT * FROM MultiplicadorEsfuerzo
+            WHERE idProyectoORela = ?
+        """.trimMargin()
+
+
+        return Database.Builder()
+                .statement(query)
+                .preparable { statement ->
+                    statement.setObject(1,projectId)
+                }
+                .onError{error ->
+                    logger.error("""There wasa an error on getting a multipliers for project with id: $projectId
+                        | Error: $error ${error.printStackTrace()}
+                    """.trimMargin())
+                }.query(MultipliersDTO)
+    }
 
 }

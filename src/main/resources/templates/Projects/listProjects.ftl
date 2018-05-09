@@ -17,7 +17,7 @@
         <hr width="90%" align="right" >
     </div>
     <div ng-app="listProjects" ng-controller="ListProjectController as lstProjectCont" style="margin-top: 5%;width: 90%;margin-left: auto;margin-right: auto">
-    <article class="media" style="box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);border: 1px solid #209cee" ng-repeat="project in lstProjectCont.listProjectsInfo">
+    <article class="media" style="box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);" ng-repeat="project in lstProjectCont.listProjectsInfo">
         <figure class="media-left" >
             <p class="title" style="margin-top: 50%;margin-left: 15%;">
                 {{project.getPerentageProject()}}%
@@ -88,7 +88,7 @@
                 </a>
                 <a class="button is-dark is-small" style="margin-top: 2%"
                    ng-if="project.getReadyEstimation()"
-                   href="/estimateProject/{{project.getIdProject()}}">
+                   href="/estimation/{{project.getIdProject()}}">
                     <span class="icon is-small">
                         <i class="fas fa-plus"></i>
                     </span>

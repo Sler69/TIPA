@@ -102,6 +102,7 @@ fun main(args: Array<String>) {
         get("/scaleFactors/:id",{request: Request, response: Response -> ProjectRenderController.renderScaleFactors(request,response) })
         get("/effortMultipliers/:id",{request: Request, response: Response -> ProjectRenderController.renderEffortMultipliers(request,response) })
         get("/calculateFunPnts/:id",{request: Request, response: Response -> ProjectRenderController.renderFunctionPoints(request,response)  })
+        get("/estimation/:id",{request: Request, response: Response -> ProjectRenderController.getEstimation(request,response) })
 
         //Logic Controllers for users
         post("saveuser", SaveUserController)

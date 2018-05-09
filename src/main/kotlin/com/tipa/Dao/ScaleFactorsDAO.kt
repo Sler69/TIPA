@@ -2,6 +2,7 @@ package com.tipa.Dao
 
 import Util.Database.Database
 import com.tipa.Controller.Project.ScaleFactors
+import com.tipa.Dto.ScaleFactorsDTO
 import java.util.*
 
 object ScaleFactorsDAO{
@@ -29,4 +30,23 @@ object ScaleFactorsDAO{
                     """.trimMargin())
                 }.execute()
     }
+
+    fun getScaelFactorsForProject(projectId:UUID):List<ScaleFactorsDTO>{
+        val query = """
+            SELECT * FROM ScaleFactor
+            WHERE idProyRelacion = ?
+        """.trimIndent()
+
+        return Database.Builder()
+                .statement(query)
+                .preparable { statement ->
+                    statement.setObject(1,projectId)
+                }
+                .onError{error ->
+                    logger.error("""There wasa an error on getting a scalefactor for project with id: $projectId
+                        | Error: $error ${error.printStackTrace()}
+                    """.trimMargin())
+                }.query(ScaleFactorsDTO)
+    }
+
 }

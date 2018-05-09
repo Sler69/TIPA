@@ -109,10 +109,10 @@
                 </div>
                 <a class="button is-info login-button create-user-button" ng-click="createuser.createUser()" ng-disabled="createuser.enabledButton">Crear usuario</a>
                 </div>
-                <div ng-show="createuser.succesfullInsert">
+                <div ng-show="createuser.succesfullInsert" class="has-text-centered" style="margin-left: auto;margin-right: auto;">
                     <h2 class="title has-text-centered">¡Usuario creado exitosamente!</h2>
                     <p class=" is-center">Se ha creado su usuario de forma exitosa por favor ingresar con su mail o usuario con la contraseña que usted escogio.</p>
-                    <a class="button is-success login-button is-centered" href="/">Login</a>
+                    <a class="button is-success login-button is-centered" style="width: 30%;margin-left: auto;margin-right: auto;margin-top: 2%" href="/">Login</a>
                 </div>
             </div>
         </div>

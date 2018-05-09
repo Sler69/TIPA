@@ -2,6 +2,7 @@ package com.tipa.Dao
 
 import Util.Database.Database
 import com.tipa.Controller.UserControllers.UserSessionInfo
+import com.tipa.Dto.ProjectDTO
 import com.tipa.Dto.ProjectsViewDTOs
 import java.sql.Date
 
@@ -47,6 +48,23 @@ object ProjectDAO{
                         | ERROR: $error
                     """.trimMargin())
                 }.query(ProjectsViewDTOs)
+    }
+
+    fun getProjectbyId(projectId:UUID):List<ProjectDTO>{
+        val query = """
+            SELECT * FROM Projects
+            WHERE idProyecto = ?
+            """
+        return Database.Builder()
+                .statement(query)
+                .preparable { statement ->
+                    statement.setObject(1,projectId)
+                }
+                .onError{error ->
+                    logger.error("""There was an error on retrivieng the projects for userid : $projectId
+                        | ERROR: $error
+                    """.trimMargin())
+                }.query(ProjectDTO)
     }
 
     fun updateFunctionPointsStatus(projectId:UUID):Int{

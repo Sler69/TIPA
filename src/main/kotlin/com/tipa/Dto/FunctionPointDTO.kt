@@ -7,9 +7,8 @@ data class FunctionPointDTO(
         val tipoFuncion:String = "",
         val intEntities:Int = -1,
         val intAtributes:Int = -1,
-        val strProyectId:String = "",
-        val intIdFunctionPoint: Int = -1,
-        val strFunctionName: String = ""
+        val strRequirementId:String = "",
+        val intIdFunctionPoint: Int = -1
 
 ){
     companion object Instance: Hydratable<FunctionPointDTO> {
@@ -17,15 +16,13 @@ data class FunctionPointDTO(
             val tipoFuncion = row.getString("TipoFuncion")
             val intEntities = row.getInt("NumeroEntidades")
             val intAttributes = row.getInt("NumeroAtributos")
-            val strProyectId = row.getUUID("idProyectoRelacion").toString()
-            val strFunctionName = row.getString("nombreFuncion")
+            val strProyectId = row.getUUID("idRequirement").toString()
             val intIdFunctionID = row.getInt("idFuncion")
             return FunctionPointDTO(
                     tipoFuncion = tipoFuncion,
                     intEntities = intEntities,
                     intAtributes = intAttributes ,
-                    strProyectId = strProyectId,
-                    strFunctionName = strFunctionName,
+                    strRequirementId = strProyectId,
                     intIdFunctionPoint = intIdFunctionID
             )
         }
