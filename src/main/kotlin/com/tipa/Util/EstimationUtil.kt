@@ -1,5 +1,6 @@
 package com.tipa.Util
 
+import com.tipa.Dto.EstimateHistoryDTO
 import com.tipa.Dto.FunctionPointDTO
 import com.tipa.Dto.MultipliersDTO
 import com.tipa.Dto.ScaleFactorsDTO
@@ -7,7 +8,7 @@ import com.tipa.Dto.ScaleFactorsDTO
 
 object EstimationUtil{
     fun getUFP(funtionPoints:List<FunctionPointDTO>):Int{
-        var ufp = 0;
+        var ufp = 0
         funtionPoints.forEach{fntPnt ->
             if(fntPnt.tipoFuncion.equals("Entrada Externa/Peticion Externa")){
                 ufp += calculateEI_EQ(fntPnt)
@@ -22,7 +23,7 @@ object EstimationUtil{
             }
 
         }
-        return ufp;
+        return ufp
     }
 
     fun getMultipliersResult(multi:MultipliersDTO):Float{
@@ -36,6 +37,49 @@ object EstimationUtil{
     fun getScaleFactorsResult(scaleFactor:ScaleFactorsDTO):Float{
         var result = scaleFactor.architecture + scaleFactor.cohesion +scaleFactor.development + scaleFactor.maturity + scaleFactor.precedentedness
         return result
+    }
+
+    fun getDeviationEstimationTime(oldEstimates:List<EstimateHistoryDTO>):Float{
+        var median =0.0f
+        val lengthList = oldEstimates.size
+        oldEstimates.forEach{estimate ->
+            median += estimate.estimateTime
+        }
+
+        median /= lengthList
+
+        var sumDistanceMedian = 0.0
+
+        oldEstimates.forEach{estimate ->
+            val valueOfRest = estimate.estimateTime - median
+            sumDistanceMedian += Math.pow(valueOfRest.toDouble(),2.0)
+        }
+
+        val valueForSqrt = sumDistanceMedian/lengthList
+
+        return Math.sqrt(valueForSqrt.toDouble()).toFloat()
+    }
+
+
+    fun getDeviationEstimationTeam(oldEstimates:List<EstimateHistoryDTO>):Float{
+        var median =0.0f
+        val lengthList = oldEstimates.size
+        oldEstimates.forEach{estimate ->
+            median += estimate.estimateTeamSize
+        }
+
+        median /= lengthList
+
+        var sumDistanceMedian = 0.0
+
+        oldEstimates.forEach{estimate ->
+            val valueOfRest = estimate.estimateTeamSize - median
+            sumDistanceMedian += Math.pow(valueOfRest.toDouble(),2.0)
+        }
+
+        val valueForSqrt = sumDistanceMedian/lengthList
+
+        return Math.sqrt(valueForSqrt.toDouble()).toFloat()
     }
 
     internal fun calculateEI_EQ(fntPnt:FunctionPointDTO):Int{

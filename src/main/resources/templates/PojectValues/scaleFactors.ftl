@@ -84,7 +84,6 @@
 
     <div >
         <a class="button is-medium " style="margin-left: 50%" ng-disabled="sf.enabledButton" ng-click="sf.uploadScaleFactors()"> Save </a>
-        <a class="button is-medium " style="margin-left: 90%" > Next </a>
     </div>
 
 

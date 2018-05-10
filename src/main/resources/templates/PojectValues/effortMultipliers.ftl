@@ -273,7 +273,6 @@
 
     <div >
         <a class="button is-medium " style="margin-left: 50%" ng-disabled="em.enabledButton" ng-click="em.uploadMultipliers()"> Save </a>
-        <a class="button is-medium " style="margin-left: 90%" > Next </a>
     </div>
 
     <div class="modal has-text-centered has-addons-centered" ng-class="em.successModalClass">

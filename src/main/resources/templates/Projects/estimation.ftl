@@ -91,5 +91,22 @@
             </div>
         </div>
     </div>
+    <#if foundDeviation>
+        <div class="notification is-info" style="width:60%;margin-left: auto ">
+            <p class="subtitle">
+                Desviacion en tiempo: ${deviationTime} + -
+            </p>
+            <p class="Subtitle">
+                Desviacion en Miembros del equipo: ${deviationTeam} + -
+            </p>
+        </div>
+    <#else>
+        <div class="notification is-info"  style="width:60%;margin-left: auto ">
+            <p class="title">
+                No tenemos suficiente informacion para poder dar un desviacion estandar sobre este proyecto.
+            </p>
+        </div>
+    </#if>
+
 </div>
 </body>

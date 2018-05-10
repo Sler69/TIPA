@@ -41,9 +41,6 @@
                   Mi Cuenta
               </a>
               <div class="navbar-dropdown is-boxed">
-                  <a class="navbar-item" href="/userinfo/">
-                      Ver Detalles
-                  </a>
                   <a class="navbar-item" href="/logout/">
                       Log Out
                   </a>

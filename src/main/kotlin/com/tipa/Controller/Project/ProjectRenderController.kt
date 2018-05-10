@@ -1,6 +1,7 @@
 package com.tipa.Controller.Project
 
 import com.tipa.Dao.*
+import com.tipa.Dto.EstimateHistoryDTO
 import com.tipa.Util.EstimationUtil
 import com.tipa.configuration
 import spark.Request
@@ -99,6 +100,29 @@ class ProjectRenderController {
             model.put("ksloc",kslocFormat)
             model.put("esfuerzo",effortProject)
             model.put("languageName",languageName)
+
+            val estimateHistory = EstimateHistoryDTO(
+                    estimateUFP = ufp,
+                    estimateTime = timeDevelopment.toFloat(),
+                    estimateTeamSize = teamSize.toFloat(),
+                    estimateLanguage = languageName
+            )
+
+            val numberOfRegisters = EstimateHistoryDAO.getOldEstimates(estimateHistory)
+            var estimationDeviationTeam = 0.0f
+            var estimationDeviationTime = 0.0f
+            var foundEstimatesDeviation = false
+            if(numberOfRegisters.size>2){
+                estimationDeviationTeam = EstimationUtil.getDeviationEstimationTeam(numberOfRegisters)
+                estimationDeviationTime = EstimationUtil.getDeviationEstimationTime(numberOfRegisters)
+                foundEstimatesDeviation = true
+            }
+
+            EstimateHistoryDAO.insertHistoryEstimate(estimateHistory)
+
+            model.put("deviationTime",estimationDeviationTime)
+            model.put("deviationTeam",estimationDeviationTeam)
+            model.put("foundDeviation",foundEstimatesDeviation)
 
             val writer = StringWriter()
             val formTemplate = configuration.getTemplate("templates/Projects/estimation.ftl")
