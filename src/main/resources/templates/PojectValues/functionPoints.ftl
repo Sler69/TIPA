@@ -39,7 +39,7 @@
                 </div>
 
                 <div class="field">
-                    <label class="label">No.Entitades</label>
+                    <label class="label">No.Entitades/Ficheros</label>
                     <div class="control">
                         <input class="input" type="number" ng-model="fntPoint.numberOfEntities" placeholder="No. Entidades">
                     </div>

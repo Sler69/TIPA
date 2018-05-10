@@ -9,7 +9,7 @@
         vm.getCredentials = getCredentials;
         
         function getCredentials() {
-            console.log(vm.userName + "  " +  vm.password);
+
             var data = {
                 "username":vm.userName
             }

@@ -270,7 +270,7 @@
         }
 
         function optionMaturity(optionValue){
-            console.log(vm.maturity);
+
             switch (vm.maturity) {
                 case 7.80:
                     vm.bM1="buttom-style";

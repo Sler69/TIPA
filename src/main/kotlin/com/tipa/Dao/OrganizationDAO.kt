@@ -1,6 +1,7 @@
 package com.tipa.Dao
 
 import Util.Database.Database
+import com.tipa.Dto.OrganizationCountDTO
 import com.tipa.Dto.OrganizationDTO
 
 object OrganizationDAO{
@@ -39,13 +40,14 @@ object OrganizationDAO{
                 }.query(OrganizationDTO)
     }
 
-    fun getOrganizationOfUserCout(idUser:Int):List<OrganizationDTO>{
+    fun getOrganizationOfUserCout(idUser:Int):List<OrganizationCountDTO>{
         val query = """
-            SELECT * FROM Organizations  O
-                    INNER JOIN (SELECT  idOrganizacion,count(*) as cnt
-                    FROM Projects
+        SELECT *
+        FROM Organizations  O
+        LEFT OUTER JOIN (SELECT  idOrganizacion,count(*) as cnt
+                     FROM Projects
                     GROUP BY idOrganizacion) P ON O.idOrganization = P.idOrganizacion
-                        WHERE O.idUser = ?
+        WHERE O.idUser = ?
         """.trimIndent()
         return Database.Builder()
                 .statement(query)
@@ -55,7 +57,7 @@ object OrganizationDAO{
                     logger.error("""There wasa an erro on retrivieng the list of organizations for the user id: $idUser
                         | Error: $error
                     """.trimMargin())
-                }.query(OrganizationDTO)
+                }.query(OrganizationCountDTO)
     }
 
     fun updateOrganizationName(idOrganization:Int,organizationName: String):Int{

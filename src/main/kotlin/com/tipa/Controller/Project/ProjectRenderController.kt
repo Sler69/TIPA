@@ -1,11 +1,18 @@
 package com.tipa.Controller.Project
 
 import com.tipa.Dao.*
+import com.tipa.Util.EstimationUtil
 import com.tipa.configuration
 import spark.Request
 import spark.Response
 import java.io.StringWriter
 import java.util.*
+import java.text.NumberFormat
+import java.text.DecimalFormat
+
+
+
+
 
 class ProjectRenderController {
     companion object {
@@ -56,15 +63,45 @@ class ProjectRenderController {
             val uuidProject = UUID.fromString(id);
 
             val lstFunctionPoints = FunctionPointsDAO.getFunctionPointsOfProject(uuidProject)
-            val scaleFactorsProject = ScaleFactorsDAO.getScaelFactorsForProject(uuidProject)
-            val multipliersProject = EffortMultipliersDAO.getEffortMultipliersProject(uuidProject)
-            val projectInfo = ProjectDAO.getProjectbyId(uuidProject)
-            val languajes = LanguageDAO.getLanguagesforCalculation(projectInfo.first().idLanguage)
+            val scaleFactorsProject = ScaleFactorsDAO.getScaelFactorsForProject(uuidProject).first()
+            val multipliersProject = EffortMultipliersDAO.getEffortMultipliersProject(uuidProject).first()
 
+
+            val projectInfo = ProjectDAO.getProjectbyId(uuidProject)
+            val languajes = LanguageDAO.getLanguagesforCalculation(projectInfo.first().idLanguage).first()
+
+            val ufp = EstimationUtil.getUFP(lstFunctionPoints)
+            val ksloc = (languajes.kloc_avg * ufp)/1000.00
+
+            val multipplierResult = EstimationUtil.getMultipliersResult(multipliersProject)
+            val pm = 2.4 * ksloc * multipplierResult
+            val scaleFactorRestult = EstimationUtil.getScaleFactorsResult(scaleFactorsProject)
+
+            val e = 1.05 + (0.01 *scaleFactorRestult )
+            val f = 0.38 + (0.2 * (e-1.05))
+            val timeDevelopment = 2.5 * Math.pow(pm,f)
+            val teamSize = pm/timeDevelopment
+            val costTeam = timeDevelopment * 160 * teamSize * projectInfo.first().priceProject
+
+            val formatter = NumberFormat.getCurrencyInstance()
+            val df2 = DecimalFormat(".##")
+            val costTeamFormat = formatter.format(costTeam)
+            val teamSizeFormat = df2.format(teamSize)
+            val kslocFormat = df2.format(ksloc)
+            val timeFormat = df2.format(timeDevelopment)
+            val languageName = languajes.name
+            val effortProject = df2.format(pm)
+
+            val model = HashMap<String, Any>()
+            model.put("costTeam",costTeamFormat)
+            model.put("teamSize",teamSizeFormat)
+            model.put("timeProject",timeFormat)
+            model.put("ksloc",kslocFormat)
+            model.put("esfuerzo",effortProject)
+            model.put("languageName",languageName)
 
             val writer = StringWriter()
             val formTemplate = configuration.getTemplate("templates/Projects/estimation.ftl")
-            val model = java.util.HashMap<String, Any>()
             formTemplate.process(model,writer)
             return writer.toString()
         }

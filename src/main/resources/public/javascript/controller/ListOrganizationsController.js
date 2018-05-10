@@ -73,7 +73,6 @@
         }
 
         function initList (organizations){
-            debugger
             angular.forEach(organizations,function (organization) {
                 var newOrganization = new Organization();
                 newOrganization.setId(organization.id);

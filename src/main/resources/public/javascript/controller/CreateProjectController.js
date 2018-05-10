@@ -127,7 +127,6 @@
 
         $http.get('/projectBasicInfo/')
             .then(function successCallback(response) {
-
                 var dataInformation = response.data;
                 var rawLstOrganizations = dataInformation.lstOrganizations;
                 var rawLstLanguages = dataInformation.lstLanguages;
@@ -194,7 +193,6 @@
             var newFunctionPoint = new FunctionPoint();
             newFunctionPoint.setId(idForNewFunctionPoint);
             vm.lstRequirements.push(newFunctionPoint);
-            console.log(vm.lstRequirements);
         }
 
         function removeRequirement(requirement){
@@ -217,7 +215,6 @@
         }
 
         function cleanLstOrganizations(rawOrganizations){
-            debugger
             angular.forEach(rawOrganizations,function (organization) {
                 var newOrganization = new Organization();
                 newOrganization.setId(organization.id);

@@ -3,7 +3,6 @@ package com.tipa.Dao
 import Util.Database.Database
 import com.tipa.Dto.LanguageDTO
 import com.tipa.Dto.LanguageViewDTO
-import com.tipa.Dto.OrganizationDTO
 
 object LanguageDAO{
     fun getLanguagesforView():List<LanguageViewDTO>{

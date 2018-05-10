@@ -42,7 +42,7 @@ data class MultipliersDTO(
             val languageExp = row.getFloat("LTEX")
             val useSoftware = row.getFloat("TOOL")
             val multisiteDev = row.getFloat("SITE")
-            val schedule = row.getFloat("EM")
+            val schedule = row.getFloat("SCED")
 
             return MultipliersDTO(
                     softwareReliability = softwareReliability ,
